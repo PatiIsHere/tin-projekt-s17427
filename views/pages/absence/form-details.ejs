@@ -16,15 +16,15 @@
     </header>
     <nav>
         <ul>
-            <li><a href="/index.html">Strona główna</a></li>
-            <li><a href="/pages/absence/list.html" class="active">Nieobecności</a></li>
-            <li><a href="/pages/employee/list.html">Pracownicy</a></li>
-            <li><a href="/pages/reason/list.html">Powody</a></li>
+            <li><a href="/views/index.htmlx.html">Strona główna</a></li>
+            <li><a href="/views/pages/pages/absence/list.html" class="active">Nieobecności</a></li>
+            <li><a href="/views/pages/pages/employee/list.html">Pracownicy</a></li>
+            <li><a href="/views/pages/pages/reason/list.html">Powody</a></li>
         </ul>
     </nav>
 
     <main>
-        <h2>Usuń nieobecność</h2>
+        <h2>Szczegóły nieobecności</h2>
 
         <form class="form">
             <label>Typ nieobecności:</label>
@@ -63,25 +63,14 @@
             <input type="number" value="80" disabled />
             <span></span>
 
-            <div class="form-buttons">
-                <p id="errorsSummary"></p>
-                <input type="submit" value="Usuń" class="form-button-delete" formaction="#popupDelete" />
-                <a href="/pages/absence/list.html" class="form-button-goBack">Powrót</a>
-            </div>
 
         </form>
 
-    </main>
-
-    <div id="popupDelete" class="overlay">
-        <div class="popup">
-            <img src="/images/deleteICON.png" alt="Delete icon">
-            <h2>Czy na pewno chcesz usunąć tą nieobecność?</h2>
-            <a href="/pages/absence/list-messages.html" class="form-button-delete">Usuń</a>
-            <a href="/pages/absence/form-delete.html" class="form-button-goBack">Powrót</a>
-            <a class="close" href="/pages/absence/list.html">&times;</a>
+        <div>
+            <a href="/views/pages/pages/absence/list.html" class="action-button-goBack">Powrót</a>
         </div>
-    </div>
+
+    </main>
 
     <footer>
         Patryk Parulski, s17427
