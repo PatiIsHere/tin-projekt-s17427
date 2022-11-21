@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <link rel="stylesheet" href="/css/style.css" />
+    <meta charset="UTF-8">
+    <title>Absence</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+
+<body>
+    <header>
+        <h1>Register of absences</h1>
+        <img src="/images/REGISTER_OF_ABSENCES_LOGO.png" alt="Register of absences Logo" class="main-logo">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Strona główna</a></li>
+            <li><a href="/pages/absence/list.html">Nieobecności</a></li>
+            <li><a href="/pages/employee/list.html" class="active">Pracownicy</a></li>
+            <li><a href="/pages/reason/list.html">Powody</a></li>
+        </ul>
+    </nav>
+    <div id="delete-info" class="info"><img src="/images/deleteICON.png" alt="Delete icon" width="25px">Rekord usuniety
+        pomyślnie</div>
+    <div id="update-info" class="info"><img src="/images/updateICON.png" alt="Update icon" width="25px">Rekord
+        zaktualizowany pomyślnie</div>
+    <div id="insert-info" class="info"><img src="/images/addICON.png" alt="Add icon" width="25px">Rekord dodany
+        pomyślnie</div>
+
+    <main>
+        <h2>Lista pracowników</h2>
+        <table class="table-list">
+            <thead>
+
+                <tr>
+                    <th>Imię</th>
+                    <th>Drugie imię</th>
+                    <th>Nazwisko</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>Jan</td>
+                    <td>Andrzej</td>
+                    <td>Kowalski</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="/pages/employee/form-details.html"
+                                    class="list-actions-button-details">Szczegóły</a>
+                                <a href="/pages/employee/form-edit.html" class="list-actions-button-edit">Edytuj</a>
+                                <a href="/pages/employee/form-delete.html" class="list-actions-button-delete">Usuń</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Andrzej</td>
+                    <td>Jan</td>
+                    <td>Niekowalski</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="/pages/employee/form-details.html"
+                                    class="list-actions-button-details">Szczegóły</a>
+                                <a href="/pages/employee/form-edit.html" class="list-actions-button-edit">Edytuj</a>
+                                <a href="/pages/employee/form-delete.html" class="list-actions-button-delete">Usuń</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Michal</td>
+                    <td></td>
+                    <td>Testowy</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="/pages/employee/form-details.html"
+                                    class="list-actions-button-details">Szczegóły</a>
+                                <a href="/pages/employee/form-edit.html" class="list-actions-button-edit">Edytuj</a>
+                                <a href="/pages/employee/form-delete.html" class="list-actions-button-delete">Usuń</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Kazimierz</td>
+                    <td></td>
+                    <td>Tetmajer</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="/pages/employee/form-details.html"
+                                    class="list-actions-button-details">Szczegóły</a>
+                                <a href="/pages/employee/form-edit.html" class="list-actions-button-edit">Edytuj</a>
+                                <a href="/pages/employee/form-delete.html" class="list-actions-button-delete">Usuń</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Janina</td>
+                    <td>Anna</td>
+                    <td>Bąk</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="/pages/employee/form-details.html"
+                                    class="list-actions-button-details">Szczegóły</a>
+                                <a href="/pages/employee/form-edit.html" class="list-actions-button-edit">Edytuj</a>
+                                <a href="/pages/employee/form-delete.html" class="list-actions-button-delete">Usuń</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <p><a href="/pages/employee/form-create.html" class="button-add">Dodaj nowego pracownika</a></p>
+    </main>
+
+    <footer>
+        Patryk Parulski, s17427
+    </footer>
+</body>
+
+</html>

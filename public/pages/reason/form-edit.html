@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <link rel="stylesheet" href="/css/style.css" />
+    <meta charset="UTF-8">
+    <title>Absence</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+
+<body>
+    <header>
+        <h1>Register of absences</h1>
+        <img src="/images/REGISTER_OF_ABSENCES_LOGO.png" alt="Register of absences Logo" class="main-logo">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Strona główna</a></li>
+            <li><a href="/pages/absence/list.html">Nieobecności</a></li>
+            <li><a href="/pages/employee/list.html">Pracownicy</a></li>
+            <li><a href="/pages/reason/list.html" class="active">Powody</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Edycja powodu</h2>
+
+        <form class="form">
+            <label for="reasonName">Typ nieobecności: <span class="symbol-required">*</span></label>
+            <input type="text" name="reasonName" id="reasonName" value="Urlop" required />
+            <span id="errorreasonName" class="errors-text"></span>
+
+            <label for="salaryPercentage">% Wynagrodzenia: <span class="symbol-required">*</span></label>
+            <input type="number" name="salaryPercentage" id="salaryPercentage" value="100" required />
+            <span id="errorsalaryPercentage" class="errors-percent"></span>
+
+            <div class="form-buttons">
+                <p id="errorsSummary"></p>
+                <!-- tutaj nie chce dzialac link a bez script nie znalazlem rozwiazania -->
+                <form action="/pages/reason/list-messages.html">
+                    <input type="submit" value="Dodaj" class="form-button-submit" />
+                </form>
+                <a href="/pages/reason/list.html" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+
+
+    </main>
+
+    <footer>
+        Patryk Parulski, s17427
+    </footer>
+</body>
+
+</html>
