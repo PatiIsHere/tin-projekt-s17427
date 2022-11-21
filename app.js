@@ -1,4 +1,6 @@
 const employeeRouter = require('./routes/employeeRoute')
+const reasonRouter = require('./routes/reasonRoute')
+const absenceRouter = require('./routes/absenceRouter')
 
 var createError = require('http-errors');
 var express = require('express');
@@ -22,6 +24,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/employee', employeeRouter);
+app.use('/reason', reasonRouter);
+app.use('/absence', absenceRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));

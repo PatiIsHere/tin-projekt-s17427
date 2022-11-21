@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+
+<head>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="UTF-8">
+    <title>Absence</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+</head>
+
+<body>
+<header>
+    <h1>Register of absences</h1>
+    <img src="/images/REGISTER_OF_ABSENCES_LOGO.png" alt="Register of absences Logo" class="main-logo">
+</header>
+<nav>
+    <ul>
+        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : '' %>">Strona główna</a></li>
+        <li><a href="/absence" class="<%= navLocation == 'absence' ? 'active' : '' %>">Nieobecności</a>
+        </li>
+        <li><a href="/employee"
+               class="<%= navLocation == 'emp' ? 'active' : '' %>">Pracownicy</a></li>
+        <li><a href="/reason"
+               class="<%= navLocation == 'reason' ? 'active' : '' %>">Powody</a></li>
+    </ul>
+</nav>
