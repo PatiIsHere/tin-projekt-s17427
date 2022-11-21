@@ -1,78 +1,48 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Dodaj nieobecność</h2>
 
-<head>
-    <link rel="stylesheet" href="/css/style.css" />
-    <meta charset="UTF-8">
-    <title>Absence</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <script type="application/javascript" src="/js/validationCommon.js"></script>
-    <script type="application/javascript" src="/js/validationAbsenceForm.js"></script>
-</head>
+    <form class="form" novalidate onsubmit="return validateForm();">
+        <label for="reasonName">Typ nieobecności: <span class="symbol-required">*</span></label>
+        <select id="reasonName" name="reasonName" class="errors-text" required>
+            <option value=""> Wybierz typ nieobecności</option>
+            <option value="1">Zwolnienie lekarskie</option>
+            <option value="2">Urlop</option>
+        </select>
+        <span id="errorReasonName" class="errors-text"></span>
 
-<body>
-    <header>
-        <h1>Register of absences</h1>
-        <img src="/images/REGISTER_OF_ABSENCES_LOGO.png" alt="Register of absences Logo" class="main-logo">
-    </header>
-    <nav>
-        <ul>
-            <li><a href="/views/index.htmlx.html">Strona główna</a></li>
-            <li><a href="/views/pages/pages/absence/list.html" class="active">Nieobecności</a></li>
-            <li><a href="/views/pages/pages/employee/list.html">Pracownicy</a></li>
-            <li><a href="/views/pages/pages/reason/list.html">Powody</a></li>
-        </ul>
-    </nav>
+        <label for="dateFrom">Data OD: <span class="symbol-required">*</span></label>
+        <input type="date" name="dateFrom" id="dateFrom" required/>
+        <span id="errorDateFrom" class="errors-text"></span>
 
-    <main>
-        <h2>Dodaj nieobecność</h2>
+        <label for="dateTo">Data DO: <span class="symbol-required">*</span></label>
+        <input type="date" name="dateTo" id="dateTo" required/>
+        <span id="errorDateTo" class="errors-text"></span>
 
-        <form class="form" novalidate onsubmit="return validateForm();">
-            <label for="reasonName">Typ nieobecności: <span class="symbol-required">*</span></label>
-            <select id="reasonName" name="reasonName" class="errors-text" required>
-                <option value=""> Wybierz typ nieobecności</option>
-                <option value="1">Zwolnienie lekarskie</option>
-                <option value="2">Urlop</option>
-            </select>
-            <span id="errorReasonName" class="errors-text"></span>
+        <label for="employee">Pracownik: <span class="symbol-required">*</span></label>
+        <select id="employee" name="employee" class="errors-text" required>
+            <option value=""> Wybierz pracownika</option>
+            <option value="1">Jan, Andrzej Kowalski</option>
+            <option value="2">Andrzej, Jan Niekowalski</option>
+            <option value="3">Michał Testowy</option>
+        </select>
+        <span id="errorEmployee" class="errors-text"></span>
 
-            <label for="dateFrom">Data OD: <span class="symbol-required">*</span></label>
-            <input type="date" name="dateFrom" id="dateFrom" required />
-            <span id="errorDateFrom" class="errors-text"></span>
+        <label for="isAccepted">Akceptacja: <span class="symbol-required">*</span></label>
+        <select id="isAccepted" name="isAccepted" class="errors-text" required>
+            <option value=""> Wybierz opcje</option>
+            <option value="1">Tak</option>
+            <option value="2">Nie</option>
+        </select>
+        <span id="errorIsAccepted" class="errors-text"></span>
 
-            <label for="dateTo">Data DO: <span class="symbol-required">*</span></label>
-            <input type="date" name="dateTo" id="dateTo" required />
-            <span id="errorDateTo" class="errors-text"></span>
+        <div class="form-buttons">
+            <span id="errorsSummary" class="errors-text"></span>
+            <input type="submit" value="Dodaj" class="form-button-submit"/>
+            <a href="/views/pages/pages/absence/list.html" class="form-button-cancel">Anuluj</a>
+        </div>
+    </form>
 
-            <label for="employee">Pracownik: <span class="symbol-required">*</span></label>
-            <select id="employee" name="employee" class="errors-text" required>
-                <option value=""> Wybierz pracownika</option>
-                <option value="1">Jan, Andrzej Kowalski</option>
-                <option value="2">Andrzej, Jan Niekowalski</option>
-                <option value="3">Michał Testowy</option>
-            </select>
-            <span id="errorEmployee" class="errors-text"></span>
+</main>
 
-            <label for="isAccepted">Akceptacja: <span class="symbol-required">*</span></label>
-            <select id="isAccepted" name="isAccepted" class="errors-text" required>
-                <option value=""> Wybierz opcje</option>
-                <option value="1">Tak</option>
-                <option value="2">Nie</option>
-            </select>
-            <span id="errorIsAccepted" class="errors-text"></span>
-
-            <div class="form-buttons">
-                <span id="errorsSummary" class="errors-text"></span>
-                <input type="submit" value="Dodaj" class="form-button-submit" />
-                <a href="/views/pages/pages/absence/list.html" class="form-button-cancel">Anuluj</a>
-            </div>
-        </form>
-
-    </main>
-
-    <footer>
-        Patryk Parulski, s17427
-    </footer>
-</body>
-
-</html>
+<%- include('../../fragments/footer.ejs') %>
