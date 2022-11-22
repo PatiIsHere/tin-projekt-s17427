@@ -1,6 +1,14 @@
-const employeeRouter = require('./routes/employeeRoute')
-const reasonRouter = require('./routes/reasonRoute')
-const absenceRouter = require('./routes/absenceRouter')
+const employeeRouter = require('./routes/employeeRoute');
+const reasonRouter = require('./routes/reasonRoute');
+const absenceRouter = require('./routes/absenceRouter');
+const sequelizeInit = require('./config/sequelize/init');
+sequelizeInit()
+    .catch(err => {
+        console.log(err);
+    });
+
+const empApiRouter = require('./routes/api/EmployeeApiRoute');
+
 
 var createError = require('http-errors');
 var express = require('express');
@@ -26,6 +34,8 @@ app.use('/', indexRouter);
 app.use('/employee', employeeRouter);
 app.use('/reason', reasonRouter);
 app.use('/absence', absenceRouter);
+
+app.use('/api/employee', empApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
