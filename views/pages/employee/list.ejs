@@ -14,92 +14,22 @@
         </tr>
         </thead>
         <tbody>
-
-        <tr>
-            <td>Jan</td>
-            <td>Andrzej</td>
-            <td>Kowalski</td>
-            <td>
-                <ul class="list-actions">
-                    <li>
-                        <a href="/views/pages/pages/employee/form-details.html"
-                           class="list-actions-button-details">Szczegóły</a>
-                        <a href="/views/pages/pages/employee/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        <a href="/views/pages/pages/employee/form-delete.html"
-                           class="list-actions-button-delete">Usuń</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Andrzej</td>
-            <td>Jan</td>
-            <td>Niekowalski</td>
-            <td>
-                <ul class="list-actions">
-                    <li>
-                        <a href="/views/pages/pages/employee/form-details.html"
-                           class="list-actions-button-details">Szczegóły</a>
-                        <a href="/views/pages/pages/employee/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        <a href="/views/pages/pages/employee/form-delete.html"
-                           class="list-actions-button-delete">Usuń</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Michal</td>
-            <td></td>
-            <td>Testowy</td>
-            <td>
-                <ul class="list-actions">
-                    <li>
-                        <a href="/views/pages/pages/employee/form-details.html"
-                           class="list-actions-button-details">Szczegóły</a>
-                        <a href="/views/pages/pages/employee/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        <a href="/views/pages/pages/employee/form-delete.html"
-                           class="list-actions-button-delete">Usuń</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Kazimierz</td>
-            <td></td>
-            <td>Tetmajer</td>
-            <td>
-                <ul class="list-actions">
-                    <li>
-                        <a href="/views/pages/pages/employee/form-details.html"
-                           class="list-actions-button-details">Szczegóły</a>
-                        <a href="/views/pages/pages/employee/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        <a href="/views/pages/pages/employee/form-delete.html"
-                           class="list-actions-button-delete">Usuń</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Janina</td>
-            <td>Anna</td>
-            <td>Bąk</td>
-            <td>
-                <ul class="list-actions">
-                    <li>
-                        <a href="/views/pages/pages/employee/form-details.html"
-                           class="list-actions-button-details">Szczegóły</a>
-                        <a href="/views/pages/pages/employee/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        <a href="/views/pages/pages/employee/form-delete.html"
-                           class="list-actions-button-delete">Usuń</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-
+        <% for (let emp of emps) { %>
+            <tr>
+                <td><%= emp.Name %></td>
+                <td><%= emp.SecondName %></td>
+                <td><%= emp.Surname %></td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="/employee/details/<&=emp.IdEmployee%>" class="list-actions-button-details">Szczegóły</a>
+                            <a href="/employee/edit/<&=emp.IdEmployee%>" class="list-actions-button-edit">Edytuj</a>
+                            <a href="/employee/delete/<&=emp.IdEmployee%>" class="list-actions-button-delete">Usuń</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        <% } %>
         </tbody>
     </table>
     <p><a href="/employee/add" class="button-add">Dodaj nowego pracownika</a></p>
