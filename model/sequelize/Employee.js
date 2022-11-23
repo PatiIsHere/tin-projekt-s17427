@@ -12,7 +12,7 @@ const Employee = sequelize.define('Employee', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    SecondNam: {
+    SecondName: {
         type: Sequelize.STRING,
         allowNull: true
     },

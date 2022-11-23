@@ -7,7 +7,10 @@ sequelizeInit()
         console.log(err);
     });
 
+
 const empApiRouter = require('./routes/api/EmployeeApiRoute');
+const reasonApiRouter = require('./routes/api/ReasonApiRoute');
+const absenceApiRouter = require('./routes/api/AbsenceApiRoute');
 
 
 var createError = require('http-errors');
@@ -26,6 +29,12 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
+
+//added to test body post request in emp
+app.use(express.json({
+    type: ['application/json', 'text/plain']
+}))
+
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -35,7 +44,11 @@ app.use('/employee', employeeRouter);
 app.use('/reason', reasonRouter);
 app.use('/absence', absenceRouter);
 
+
 app.use('/api/employee', empApiRouter);
+app.use('/api/reason', reasonApiRouter);
+app.use('/api/absence', absenceApiRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
