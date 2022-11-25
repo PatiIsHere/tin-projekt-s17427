@@ -33,7 +33,7 @@ exports.createEmployee = (newEmpData) => {
 exports.updateEmployee = (empId, empData) => {
     const name = empData.Name;
     const secondName = empData.SecondName;
-    const surName = empData.SurName;
+    const surName = empData.Surname;
 
     return Employee.update(empData,
         {where: {IdEmployee: empId}});

@@ -11,17 +11,74 @@ exports.showEmployeeList = (req, res, next) => {
 }
 
 exports.showAddEmployeeForm = (req, res, next) => {
-    res.render('pages/employee/create', {navLocation: 'emp'});
+    res.render('pages/employee/form', {
+        emp: {},
+        pageTitle: 'Nowy pracownik',
+        formMode: 'createNew',
+        btnLabel: 'Dodaj pracownika',
+        formAction: '/employee/add',
+        navLocation: 'emp'
+    });
 }
 
 exports.showEmployeeDetails = (req, res, next) => {
-    res.render('pages/employee/details', {navLocation: 'emp'});
+    const empId = req.params.IdEmployee;
+    console.log(empId)
+    EmployeeRepository.getEmployeeById(empId)
+        .then(emp => {
+            res.render('pages/employee/form', {
+                emp: emp,
+                formMode: 'showDetails',
+                pageTitle: 'Szczegóły pracownika',
+                formAction: '',
+                navLocation: 'emp'
+            });
+        })
 }
 
 exports.showEmployeeEditForm = (req, res, next) => {
-    res.render('pages/employee/edit', {navLocation: 'emp'});
+    const empId = req.params.IdEmployee;
+    EmployeeRepository.getEmployeeById(empId)
+        .then(emp => {
+            res.render('pages/employee/form', {
+                emp: emp,
+                formMode: 'edit',
+                pageTitle: 'Edycja pracownika',
+                btnLabel: 'Edytuj pracownika',
+                formAction: '/employee/edit',
+                navLocation: 'emp'
+            });
+        })
+
 }
 
 exports.showDeleteEmployeeForm = (req, res, next) => {
     res.render('pages/employee/delete', {navLocation: 'emp'});
+}
+
+exports.addEmployee = (req, res, next) => {
+    const empData = {...req.body};
+    console.log(empData)
+    EmployeeRepository.createEmployee(empData)
+        .then(result => {
+            res.redirect('/employee');
+        })
+}
+
+exports.updateEmployee = (req, res, next) => {
+    const empId = req.body.IdEmployee;
+    const empData = {...req.body};
+    EmployeeRepository.updateEmployee(empId, empData)
+        .then(result => {
+            res.redirect('/employee');
+        })
+}
+
+exports.deleteEmployee = (req, res, next) => {
+    const empId = req.params.IdEmployee;
+    console.log(empId)
+    EmployeeRepository.deleteEmployee(empId)
+        .then(result => {
+            res.redirect('/employee');
+        })
 }

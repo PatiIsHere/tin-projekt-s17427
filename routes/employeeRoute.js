@@ -4,9 +4,14 @@ const employeeController = require('../controllers/employeeController');
 
 
 router.get('/', employeeController.showEmployeeList);
-router.get('/add', employeeController.showAddEmployeeForm);
 router.get('/details/:IdEmployee', employeeController.showEmployeeDetails);
+
+router.get('/add', employeeController.showAddEmployeeForm);
 router.get('/edit/:IdEmployee', employeeController.showEmployeeEditForm);
-router.get('/delete/:IdEmployee', employeeController.showDeleteEmployeeForm);
+//router.get('/delete/:IdEmployee', employeeController.showDeleteEmployeeForm);
+
+router.post('/add', employeeController.addEmployee);
+router.post('/edit', employeeController.updateEmployee);
+router.get('/delete/:IdEmployee', employeeController.deleteEmployee);
 
 module.exports = router;

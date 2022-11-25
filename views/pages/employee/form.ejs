@@ -1,0 +1,74 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <script type="application/javascript" src="/js/validationEmpForm.js"></script>
+    <script type="application/javascript" scr="/js/validationCommon.js"></script>
+    <h2><%= pageTitle %></h2>
+
+    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+        <input type="hidden" name="IdEmployee" value="<%= emp.IdEmployee %>">
+
+        <label for="firstName">Imię: <span class="symbol-required">*</span></label>
+        <input type="text" name="Name" id="Name" placeholder="2-50 znaków" value="<%= emp.Name %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
+        <span id="errorFirstName" class="errors-text"></span>
+
+        <label for="secondName">Drugie imię: </label>
+        <input type="text" name="SecondName" id="SecondName" placeholder="max 50 znaków" value="<%= emp.SecondName %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorSecondName" class="errors-text"></span>
+
+        <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
+        <input type="text" name="Surname" id="Surname" placeholder="2-100 znaków" value="<%= emp.Surname %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
+        <span id="errorLastName" class="errors-text"></span>
+
+        <% if (formMode == 'showDetails') { %>
+            <div class="section-buttons">
+                <a href="/employee/edit/<%= emp.IdEmployee %>" class="action-button-gotoEdit">Edytuj</a>
+            </div>
+        <% } %>
+
+        <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+            <h2>Nieobecności</h2>
+
+            <table class="table-list">
+                <thead>
+
+                <tr>
+                    <th>Typ nieobecności</th>
+                    <th class="non-essential-row">Data OD</th>
+                    <th>Data DO</th>
+                    <th class="non-essential-row">Akceptacja</th>
+                    <th>% Wynagrodzenia</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for (let e of emp.absences) { %>
+                    <tr>
+                        <td><a href="/absence/details/<%= e.reason.IdReason %>"><%= e.reason.Name %></a></td>
+                        <td class="non-essential-row"><%= e.DateFrom.toLocaleDateString('pl-PL') %></td>
+                        <td><%= e.DateTo.toLocaleDateString('pl-PL') %></td>
+                        <td class="non-essential-row"><%= e.IsAccepted %></td>
+                        <td><%= e.reason.SalaryPercentage * 100 %></td>
+                    </tr>
+                <% } %>
+
+                </tbody>
+            </table>
+        <% } %>
+        
+        <div class="form-buttons">
+            <p id="errorSummary" class="errors-text"></p>
+            <% if(formMode != 'showDetails') { %>
+                <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
+                <a class="form-button-cancel" href="/employee">Anuluj</a>
+            <% } else { %>
+                <a class="form-button-cancel" href="/employee">Powrót</a>
+            <% } %>
+        </div>
+    </form>
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
