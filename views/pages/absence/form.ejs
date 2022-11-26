@@ -1,0 +1,90 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <script type="application/javascript" src="/js/validationAbsenceForm.js"></script>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <h2><%= pageTitle %></h2>
+
+    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+        <input type="hidden" name="IdAbsence" value="<%= absence.IdAbsence %>">
+
+        <label>Typ nieobecności:</label>
+        <select id="IdReason" name="IdReason" required <%= (formMode === 'showDetails') ? 'disabled' : '' %> >
+            <option value="" selected>-- Wybierz typ nieobecności--</option>
+            <% for ( let i = 0; i < allReasons.length; i++) { let reason = allReasons[i]; %>
+            <option value="<%= reason.IdReason %>" label="<%= reason.Name %>"
+                    <%= (absence.IdAbsence && reason.IdReason.toString() === absence.reason.IdReason.toString()) ? 'selected' : '' %>>
+
+            </option>
+            <% } %>
+        </select>
+        <span></span>
+
+        <label for="dateFrom">Data OD: </label>
+        <input type="date" name="DateFrom" id="DateFrom" placeholder="Wybierz date"
+        <% if (formMode !== 'createNew') { %>
+               value="<%= absence.DateFrom.toISOString().split('T')[0] %>"
+                <% } %>
+                <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorDateFrom" class="errors-text"></span>
+
+        <label for="dateTo">Data DO: </label>
+        <input type="date" name="DateTo" id="DateTo"
+        <% if (formMode !== 'createNew') { %>
+               value="<%= absence.DateTo.toISOString().split('T')[0] %>"
+                <% } %>
+                <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorDateTo" class="errors-text"></span>
+
+        <label>Pracownik:</label>
+        <select id="IdEmployee" name="IdEmployee" required <%= (formMode === 'showDetails') ? 'disabled' : '' %> >
+            <option value="" selected>-- Wybierz pracownika--</option>
+            <% for ( let i = 0; i < allEmps.length; i++) { let emp = allEmps[i]; %>
+            <option value="<%= emp.IdEmployee %>" label="<%= emp.Name + ', ' +
+            (emp.SecondName !== null ? emp.SecondName + ' ' : '')
+            + emp.Surname %>"
+                    <%= (absence.IdAbsence && emp.IdEmployee.toString() === absence.employee.IdEmployee.toString()) ? 'selected' : '' %>>
+
+            </option>
+            <% } %>
+        </select>
+        <span></span>
+
+        <label>Akceptacja: </label>
+        <select id="IsAccepted" name="IsAccepted" <%= (formMode === 'showDetails') ? 'disabled' : '' %>>
+            <option value="0" <%= (absence.IsAccepted === false) ? 'selected' : '' %>
+            >Nie
+            </option>
+            <option value="1" <%= (absence.IsAccepted === true) ? 'selected' : '' %>
+            >Tak
+            </option>
+        </select>
+        <span></span>
+
+        <% if (formMode === 'showDetails') { %>
+
+            <label>% Wynagrodzenia: </label>
+            <input type="number" value="<%= absence.reason.SalaryPercentage %>"
+                   disabled/>
+            <span></span>
+
+
+            <div class="section-buttons">
+                <a href="/absence/edit/<%= absence.IdAbsence %>" class="action-button-gotoEdit">Edytuj</a>
+            </div>
+        <% } %>
+        <div class="form-buttons">
+            <p id="errorSummary" class="errors-text"></p>
+            <% if(formMode !== 'showDetails') { %>
+                <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
+                <a class="form-button-cancel" href="/absence">Anuluj</a>
+            <% } else { %>
+                <a class="form-button-cancel" href="/absence">Powrót</a>
+            <% } %>
+        </div>
+
+    </form>
+
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

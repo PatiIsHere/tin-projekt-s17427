@@ -1,8 +1,8 @@
 function validateForm() {
 
-    const firstNameInput = document.getElementById('firstName');
-    const secondNameInput = document.getElementById('secondName');
-    const lastNameInput = document.getElementById('lastName');
+    const firstNameInput = document.getElementById('Name');
+    const secondNameInput = document.getElementById('SecondName');
+    const lastNameInput = document.getElementById('Surname');
 
     const errorFirstName = document.getElementById('errorFirstName');
     const errorSecondName = document.getElementById('errorSecondName');

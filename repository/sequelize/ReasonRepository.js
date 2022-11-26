@@ -25,13 +25,13 @@ exports.createReason = (newReasonData) => {
     console.log(newReasonData);
     return Reason.create({
         Name: newReasonData.Name,
-        SalaryPercentage: newReasonData.SalaryPercentage
+        SalaryPercentage: parseFloat(newReasonData.SalaryPercentage).toFixed(2)
     });
 };
 
 exports.updateReason = (reasonId, reasonData) => {
     const name = reasonData.Name;
-    const salaryPercentage = reasonData.salaryPercentage;
+    const salaryPercentage = parseFloat(reasonData.salaryPercentage);
 
     return Reason.update(reasonData,
         {where: {IdReason: reasonId}});

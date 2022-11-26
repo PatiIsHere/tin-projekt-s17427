@@ -51,6 +51,13 @@ exports.deleteAbsence = (absenceId) => {
     return Absence.destroy(
         {where: {IdAbsence: absenceId}});
 };
+
+exports.getPossibleAcceptance = () => {
+    return Absence.findAll({
+        attributes: ['IsAccepted'],
+        group: 'IsAccepted'
+    })
+}
 //co to ma byc?
 // exports.deleteManyAbsences = (absenceIds) => {
 //     return Absence.find({ IdAbsence: { [Sequelize.Op.in]: absenceIds}})

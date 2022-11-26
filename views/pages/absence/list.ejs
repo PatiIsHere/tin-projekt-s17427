@@ -16,64 +16,26 @@
         </tr>
         </thead>
         <tbody>
-
-        <tr>
-            <td>Zwolnienie lekarskie</td>
-            <td class="non-essential-row">2022-09-05</td>
-            <td>2022-09-09</td>
-            <td class="non-essential-row">Jan</td>
-            <td>Kowalski</td>
-            <td class="non-essential-row">Tak</td>
-            <td>
-                <ul class="list-actions">
-                    <li>
-                        <a href="/views/pages/pages/absence/form-details.html"
-                           class="list-actions-button-details">Szczegóły</a>
-                        <a href="/views/pages/pages/absence/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        <a href="/views/pages/pages/absence/form-delete.html"
-                           class="list-actions-button-delete">Usuń</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>Urlop</td>
-            <td class="non-essential-row">2022-10-10</td>
-            <td>2022-10-14</td>
-            <td class="non-essential-row">Jan</td>
-            <td>Kowalski</td>
-            <td class="non-essential-row">Tak</td>
-            <td>
-                <ul class="list-actions">
-                    <li>
-                        <a href="/views/pages/pages/absence/form-details.html"
-                           class="list-actions-button-details">Szczegóły</a>
-                        <a href="/views/pages/pages/absence/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        <a href="/views/pages/pages/absence/form-delete.html"
-                           class="list-actions-button-delete">Usuń</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>Urlop</td>
-            <td class="non-essential-row">2022-10-31</td>
-            <td>2022-11-05</td>
-            <td class="non-essential-row">Jan</td>
-            <td>Kowalski</td>
-            <td class="non-essential-row">Nie</td>
-            <td>
-                <ul class="list-actions">
-                    <li>
-                        <a href="/views/pages/pages/absence/form-details.html"
-                           class="list-actions-button-details">Szczegóły</a>
-                        <a href="/views/pages/pages/absence/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        <a href="/views/pages/pages/absence/form-delete.html"
-                           class="list-actions-button-delete">Usuń</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
+        <% for (let absence of absences) { %>
+            <tr>
+                <td><%= absence.reason.Name %></td>
+                <td class="non-essential-row"><%= absence.DateFrom.toLocaleDateString('pl-PL') %></td>
+                <td><%= absence.DateTo.toLocaleDateString('pl-PL') %></td>
+                <td class="non-essential-row"><%= absence.employee.Name %></td>
+                <td><%= absence.employee.Surname %></td>
+                <td class="non-essential-row"><%= absence.IsAccepted === true ? 'Tak' : 'Nie' %></td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="/absence/details/<%= absence.IdAbsence %>" class="list-actions-button-details">Szczegóły</a>
+                            <a href="/absence/edit/<%= absence.IdAbsence %>" class="list-actions-button-edit">Edytuj</a>
+                            <a href="/absence/delete/<%= absence.IdAbsence %>"
+                               class="list-actions-button-delete">Usuń</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        <% } %>
         </tbody>
     </table>
     <p><a href="/absence/add" class="button-add">Dodaj nową nieobecność</a></p>

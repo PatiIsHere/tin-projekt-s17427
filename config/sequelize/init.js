@@ -90,6 +90,13 @@ module.exports = () => {
                         DateTo: '2022-11-05',
                         IsAccepted: false
                     },
+                    {
+                        IdEmployee: allEmployees[2].IdEmployee,
+                        IdReason: allReasons[0].IdReason,
+                        DateFrom: '2022-10-31',
+                        DateTo: '2022-11-05',
+                        IsAccepted: false
+                    }
                 ])
             } else {
                 return absences;

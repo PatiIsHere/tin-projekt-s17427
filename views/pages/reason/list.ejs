@@ -1,7 +1,7 @@
 <%- include('../../fragments/header.ejs') %>
 
 <main>
-    <h2>Lista pracowników</h2>
+    <h2>Lista powodów</h2>
     <table class="table-list">
         <thead>
 
@@ -12,41 +12,24 @@
         </tr>
         </thead>
         <tbody>
-
-        <tr>
-            <td>Urlop</td>
-            <td>100</td>
-            <td>
-                <ul class="list-actions">
-                    <li>
-                        <a href="/views/pages/pages/reason/form-details.html"
-                           class="list-actions-button-details">Szczegóły</a>
-                        <a href="/views/pages/pages/reason/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        <a href="/views/pages/pages/reason/form-delete.html" class="list-actions-button-delete">Usuń</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Zwolnienie lekarskie</td>
-            <td>80</td>
-            <td>
-                <ul class="list-actions">
-                    <li>
-                        <a href="/views/pages/pages/reason/form-details.html"
-                           class="list-actions-button-details">Szczegóły</a>
-                        <a href="/views/pages/pages/reason/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        <a href="/views/pages/pages/reason/form-delete.html" class="list-actions-button-delete">Usuń</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-
-
+        <% for (let reason of reasons) { %>
+            <tr>
+                <td><%= reason.Name %></td>
+                <td><%= reason.SalaryPercentage %></td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="/reason/details/<%= reason.IdReason %>" class="list-actions-button-details">Szczegóły</a>
+                            <a href="/reason/edit/<%= reason.IdReason %>" class="list-actions-button-edit">Edytuj</a>
+                            <a href="/reason/delete/<%= reason.IdReason %>" class="list-actions-button-delete">Usuń</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        <% } %>
         </tbody>
     </table>
-    <p><a href="/views/pages/pages/reason/form-create.html" class="button-add">Dodaj nowy typ nieobecności</a></p>
+    <p><a href="/reason/add" class="button-add">Dodaj nowy powód</a></p>
 </main>
 
 <%- include('../../fragments/footer.ejs') %>
