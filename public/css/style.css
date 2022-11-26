@@ -260,8 +260,8 @@ textarea {
 
 .form {
     margin-left: 2rem;
-    display: grid;
-    grid-template-columns: 150px 300px 1fr;
+    /*display: grid;*/
+    /*grid-template-columns: 150px 300px 1fr;*/
     gap: 2.4rem;
 }
 
@@ -274,7 +274,7 @@ textarea {
     color: #2c3e50;
     border-radius: 5px;
     padding: 0.5rem;
-    width: 100%;
+    width: 50%;
 }
 
 .form label {
@@ -367,8 +367,6 @@ textarea {
 }
 
 
-
-
 @media all and (max-width: 900px) {
 
     .list-actions {
@@ -381,7 +379,6 @@ textarea {
         align-items: center;
         gap: 4px
     }
-
 
 
     .list-actions li a {
@@ -502,6 +499,14 @@ textarea {
     .table-list th,
     .table-list td {
         padding: 0.2rem;
+    }
+
+    .form select,
+    .form input[type="text"],
+    .form input[type="number"],
+    .form input[type="date"],
+    .form input[type="radio"] {
+        width: 100%;
     }
 
 }
