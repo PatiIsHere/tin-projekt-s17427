@@ -49,7 +49,7 @@
                         <td><a href="/absence/details/<%= e.reason.IdReason %>"><%= e.reason.Name %></a></td>
                         <td class="non-essential-row"><%= e.DateFrom.toLocaleDateString('pl-PL') %></td>
                         <td><%= e.DateTo.toLocaleDateString('pl-PL') %></td>
-                        <td class="non-essential-row"><%= e.IsAccepted %></td>
+                        <td class="non-essential-row"><%= e.IsAccepted === true ? 'Tak' : 'Nie' %></td>
                         <td><%= e.reason.SalaryPercentage * 100 %></td>
                     </tr>
                 <% } %>
@@ -57,10 +57,10 @@
                 </tbody>
             </table>
         <% } %>
-        
+
         <div class="form-buttons">
             <p id="errorSummary" class="errors-text"></p>
-            <% if(formMode != 'showDetails') { %>
+            <% if(formMode !== 'showDetails') { %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
                 <a class="form-button-cancel" href="/employee">Anuluj</a>
             <% } else { %>
