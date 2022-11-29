@@ -9,19 +9,37 @@
         <input type="hidden" name="IdEmployee" value="<%= emp.IdEmployee %>">
 
         <label for="firstName">Imię: <span class="symbol-required">*</span></label>
-        <input type="text" name="Name" id="Name" placeholder="2-50 znaków" value="<%= emp.Name %>"
+        <input type="text" name="Name" id="Name" placeholder="2-50 znaków"
+               class="<% validationErrors.find(e => e.path.includes('Name')) ? 'error-input' : '' %>"
+               value="<%= emp.Name %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
-        <span id="errorFirstName" class="errors-text"></span>
+        <span id="errorFirstName" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('Name'))){ %>
+                <%= (validationErrors.find(e => e.path.includes('Name'))).message %>
+            <% } %>
+        </span>
 
         <label for="secondName">Drugie imię: </label>
-        <input type="text" name="SecondName" id="SecondName" placeholder="max 50 znaków" value="<%= emp.SecondName %>"
+        <input type="text" name="SecondName" id="SecondName" placeholder="Brak lub 2-50 znaków"
+               class="<% validationErrors.find(e => e.path.includes('SecondName')) ? 'error-input' : '' %>"
+               value="<%= emp.SecondName %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span id="errorSecondName" class="errors-text"></span>
+        <span id="errorSecondName" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('SecondName'))){ %>
+                <%= (validationErrors.find(e => e.path.includes('SecondName'))).message %>
+            <% } %>
+        </span>
 
         <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input type="text" name="Surname" id="Surname" placeholder="2-100 znaków" value="<%= emp.Surname %>"
+        <input type="text" name="Surname" id="Surname" placeholder="2-100 znaków"
+               class="<% validationErrors.find(e => e.path.includes('Surname')) ? 'error-input' : '' %>"
+               value="<%= emp.Surname %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
-        <span id="errorLastName" class="errors-text"></span>
+        <span id="errorLastName" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('Surname'))){ %>
+                <%= (validationErrors.find(e => e.path.includes('Surname'))).message %>
+            <% } %>
+        </span>
 
         <% if (formMode == 'showDetails') { %>
             <div class="section-buttons">
@@ -59,7 +77,7 @@
         <% } %>
 
         <div class="form-buttons">
-            <p id="errorSummary" class="errors-text"></p>
+            <p id="errorsSummary" class="errors-text"></p>
             <% if(formMode !== 'showDetails') { %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
                 <a class="form-button-cancel" href="/employee">Anuluj</a>

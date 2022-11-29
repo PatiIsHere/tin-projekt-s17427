@@ -17,7 +17,8 @@ exports.showAddEmployeeForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj pracownika',
         formAction: '/employee/add',
-        navLocation: 'emp'
+        navLocation: 'emp',
+        validationErrors: []
     });
 }
 
@@ -31,7 +32,8 @@ exports.showEmployeeDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły pracownika',
                 formAction: '',
-                navLocation: 'emp'
+                navLocation: 'emp',
+                validationErrors: []
             });
         })
 }
@@ -46,7 +48,8 @@ exports.showEmployeeEditForm = (req, res, next) => {
                 pageTitle: 'Edycja pracownika',
                 btnLabel: 'Edytuj pracownika',
                 formAction: '/employee/edit',
-                navLocation: 'emp'
+                navLocation: 'emp',
+                validationErrors: []
             });
         })
 
@@ -62,6 +65,17 @@ exports.addEmployee = (req, res, next) => {
     EmployeeRepository.createEmployee(empData)
         .then(result => {
             res.redirect('/employee');
+        })
+        .catch(err => {
+            res.render('pages/employee/form', {
+                emp: empData,
+                pageTitle: 'Nowy pracownik',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj pracownika',
+                formAction: '/employee/add',
+                navLocation: 'emp',
+                validationErrors: err.errors
+            })
         })
 }
 

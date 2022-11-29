@@ -30,7 +30,7 @@ module.exports = () => {
         })
         .then(emps => {
             //TODO tutaj dwa == czy trzy ===?
-            if (!emps || emps.length == 0) {
+            if (!emps || emps.length === 0) {
                 return Employee.bulkCreate([
                     {Name: 'Jan', SecondName: 'Andrzej', Surname: 'Kowalski'},
                     {Name: 'Andrzej', SecondName: 'Jan', Surname: 'Niekowalski'},
@@ -50,7 +50,7 @@ module.exports = () => {
             return Reason.findAll();
         })
         .then(reasons => {
-            if (!reasons || reasons.length == 0) {
+            if (!reasons || reasons.length === 0) {
                 return Reason.bulkCreate([
                     {Name: 'Urlop', SalaryPercentage: 1.00},
                     {Name: 'Zwolnienie lekarskie', SalaryPercentage: 0.80}
@@ -67,7 +67,7 @@ module.exports = () => {
             return Absence.findAll();
         })
         .then(absences => {
-            if (!absences || absences.length == 0) {
+            if (!absences || absences.length === 0) {
                 return Absence.bulkCreate([
                     {
                         IdEmployee: allEmployees[0].IdEmployee,

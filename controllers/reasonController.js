@@ -17,7 +17,8 @@ exports.showAddReasonForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj powód',
         formAction: '/reason/add',
-        navLocation: 'reason'
+        navLocation: 'reason',
+        validationErrors: []
     });
 }
 
@@ -31,7 +32,8 @@ exports.showReasonDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły powodu',
                 formAction: '',
-                navLocation: 'reason'
+                navLocation: 'reason',
+                validationErrors: []
             });
         })
 }
@@ -46,7 +48,8 @@ exports.showReasonEditForm = (req, res, next) => {
                 pageTitle: 'Edycja powodu',
                 btnLabel: 'Edytuj powód',
                 formAction: '/reason/edit',
-                navLocation: 'reason'
+                navLocation: 'reason',
+                validationErrors: []
             });
         })
 
@@ -58,6 +61,17 @@ exports.addReason = (req, res, next) => {
     ReasonRepository.createReason(reasonData)
         .then(result => {
             res.redirect('/reason');
+        })
+        .catch(err => {
+            res.render('pages/reason/form', {
+                reason: reasonData,
+                pageTitle: 'Nowy powód',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj powód',
+                formAction: '/reason/add',
+                navLocation: 'reason',
+                validationErrors: err.errors
+            })
         })
 }
 

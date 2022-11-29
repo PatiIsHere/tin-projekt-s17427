@@ -29,7 +29,8 @@ exports.showAddAbsenceForm = (req, res, next) => {
                 allReasons: allReasons,
                 btnLabel: 'Dodaj nieobecność',
                 formAction: '/absence/add',
-                navLocation: 'absence'
+                navLocation: 'absence',
+                validationErrors: []
             });
         });
 }
@@ -55,7 +56,8 @@ exports.showAbsenceDetails = (req, res, next) => {
                         allReasons: allReasons,
                         possibleIsAcceptedValues: AbsenceRepository.getPossibleAcceptance(),
                         formAction: '',
-                        navLocation: 'absence'
+                        navLocation: 'absence',
+                        validationErrors: []
                     });
                 });
         });
@@ -81,7 +83,8 @@ exports.showAbsenceEditForm = (req, res, next) => {
                         allReasons: allReasons,
                         btnLabel: 'Edytuj nieobecność',
                         formAction: '/absence/edit',
-                        navLocation: 'absence'
+                        navLocation: 'absence',
+                        validationErrors: []
                     });
                 });
         });
@@ -91,10 +94,32 @@ exports.showAbsenceEditForm = (req, res, next) => {
 
 exports.addAbsence = (req, res, next) => {
     const absenceData = {...req.body};
-    console.log(absenceData)
+    let allEmps, allReasons;
+
     AbsenceRepository.createAbsence(absenceData)
         .then(result => {
             res.redirect('/absence');
+        })
+        .catch(err => {
+            EmployeeRepository.getEmployees()
+                .then(emps => {
+                    allEmps = emps;
+                    return ReasonRepository.getReasons();
+                })
+                .then(reasons => {
+                    allReasons = reasons;
+                    res.render('pages/absence/form', {
+                        absence: absenceData,
+                        pageTitle: 'Nowa nieobecność',
+                        formMode: 'createNew',
+                        allEmps: allEmps,
+                        allReasons: allReasons,
+                        btnLabel: 'Dodaj nieobecność',
+                        formAction: '/absence/add',
+                        navLocation: 'absence',
+                        validationErrors: err.errors
+                    });
+                });
         })
 }
 //

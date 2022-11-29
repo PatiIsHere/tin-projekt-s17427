@@ -1,7 +1,7 @@
 function validateForm() {
 
-    const reasonNameInput = document.getElementById('reasonName');
-    const salaryPercentageInput = document.getElementById('salaryPercentage');
+    const reasonNameInput = document.getElementById('Name');
+    const salaryPercentageInput = document.getElementById('SalaryPercentage');
 
     const errorReasonName = document.getElementById('errorReasonName');
     const errorSalaryPercentage = document.getElementById('errorSalaryPercentage');
@@ -32,7 +32,7 @@ function validateForm() {
     } else if (!checkNumberRange(salaryPercentageInput, 0, 100)) {
         valid = false;
         salaryPercentageInput.classList.add("error-input");
-        errorSalaryPercentage.innerText = "Pole powinno być liczbą w zakresie 0 do 100";
+        errorSalaryPercentage.innerText = "Pole powinno być liczbą w zakresie 0.00 do 1.00";
     }
 
     if (!valid) {

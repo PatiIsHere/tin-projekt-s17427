@@ -8,7 +8,11 @@
         <input type="hidden" name="IdAbsence" value="<%= absence.IdAbsence %>">
 
         <label>Typ nieobecności:</label>
-        <select id="IdReason" name="IdReason" required <%= (formMode === 'showDetails') ? 'disabled' : '' %> >
+        <select id="IdReason" name="IdReason"
+                class="<%= validationErrors.find(e => e.path.includes('IdReason')) ? 'error-input' : '' %>"
+                required <%= (formMode === 'showDetails') ? 'disabled' : '' %>
+
+        >
             <option value="" selected>-- Wybierz typ nieobecności--</option>
             <% for ( let i = 0; i < allReasons.length; i++) { let reason = allReasons[i]; %>
             <option value="<%= reason.IdReason %>" label="<%= reason.Name %>"
@@ -17,26 +21,44 @@
             </option>
             <% } %>
         </select>
-        <span></span>
+        <span id="errorReasonName" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('IdReason'))){ %>
+                <%= (validationErrors.find(e => e.path.includes('IdReason'))).message %>
+            <% } %>
+        </span>
 
         <label for="dateFrom">Data OD: </label>
         <input type="date" name="DateFrom" id="DateFrom" placeholder="Wybierz date"
+               class="<% validationErrors.find(e => e.path.includes('DateFrom')) ? 'error-input' : '' %>"
         <% if (formMode !== 'createNew') { %>
                value="<%= absence.DateFrom.toISOString().split('T')[0] %>"
                 <% } %>
                 <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
-        <span id="errorDateFrom" class="errors-text"></span>
+        <span id="errorDateFrom" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('DateFrom'))){ %>
+                <%= (validationErrors.find(e => e.path.includes('DateFrom'))).message %>
+            <% } %>
+        </span>
 
         <label for="dateTo">Data DO: </label>
-        <input type="date" name="DateTo" id="DateTo"
+        <input type="date" name="DateTo" id="DateTo" placeholder="Wybierz date"
+               class="<% validationErrors.find(e => e.path.includes('DateTo')) ? 'error-input' : '' %>"
         <% if (formMode !== 'createNew') { %>
                value="<%= absence.DateTo.toISOString().split('T')[0] %>"
                 <% } %>
                 <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
-        <span id="errorDateTo" class="errors-text"></span>
+        <span id="errorDateTo" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('DateTo'))){ %>
+                <%= (validationErrors.find(e => e.path.includes('DateTo'))).message %>
+            <% } %>
+        </span>
 
         <label>Pracownik:</label>
-        <select id="IdEmployee" name="IdEmployee" required <%= (formMode === 'showDetails') ? 'disabled' : '' %> >
+        <select id="IdEmployee" name="IdEmployee"
+                class="<%= validationErrors.find(e => e.path.includes('IdEmployee')) ? 'error-input' : '' %>"
+                required <%= (formMode === 'showDetails') ? 'disabled' : '' %>
+                class="<% validationErrors.find(e => e.path.includes('IdEmployee')) ? 'error-input' : '' %>"
+        >
             <option value="" selected>-- Wybierz pracownika--</option>
             <% for ( let i = 0; i < allEmps.length; i++) { let emp = allEmps[i]; %>
             <option value="<%= emp.IdEmployee %>" label="<%= emp.Name + ', ' +
@@ -47,10 +69,16 @@
             </option>
             <% } %>
         </select>
-        <span></span>
+        <span id="errorEmployee" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('IdEmployee'))){ %>
+                <%= (validationErrors.find(e => e.path.includes('IdEmployee'))).message %>
+            <% } %>
+        </span>
 
         <label>Akceptacja: </label>
-        <select id="IsAccepted" name="IsAccepted" <%= (formMode === 'showDetails') ? 'disabled' : '' %>>
+        <select id="IsAccepted" name="IsAccepted" <%= (formMode === 'showDetails') ? 'disabled' : '' %>
+        >
+            <option value="" selected>-- Wybierz akceptacje--</option>
             <option value="0" <%= (absence.IsAccepted === false) ? 'selected' : '' %>
             >Nie
             </option>
@@ -58,7 +86,11 @@
             >Tak
             </option>
         </select>
-        <span></span>
+        <span id="errorIsAccepted" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('IsAccepted'))){ %>
+                <%= (validationErrors.find(e => e.path.includes('IsAccepted'))).message %>
+            <% } %>
+        </span>
 
         <% if (formMode === 'showDetails') { %>
 
@@ -73,7 +105,7 @@
             </div>
         <% } %>
         <div class="form-buttons">
-            <p id="errorSummary" class="errors-text"></p>
+            <p id="errorsSummary" class="errors-text"></p>
             <% if(formMode !== 'showDetails') { %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
                 <a class="form-button-cancel" href="/absence">Anuluj</a>

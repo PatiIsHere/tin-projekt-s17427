@@ -1,11 +1,10 @@
 function validateForm() {
 
-    const reasonNameInput = document.getElementById('reasonName');
-    const dateFromInput = document.getElementById('dateFrom');
-    const dateToInput = document.getElementById('dateTo');
-    const employeeInput = document.getElementById('employee');
-    const isAcceptedInput = document.getElementById('isAccepted');
-
+    const reasonNameInput = document.getElementById('IdReason');
+    const dateFromInput = document.getElementById('DateFrom');
+    const dateToInput = document.getElementById('DateTo');
+    const employeeInput = document.getElementById('IdEmployee');
+    const isAcceptedInput = document.getElementById('IsAccepted');
 
 
     const errorReasonName = document.getElementById('errorReasonName');
@@ -14,7 +13,6 @@ function validateForm() {
     const errorEmployee = document.getElementById('errorEmployee');
     const errorIsAccepted = document.getElementById('errorIsAccepted');
     const errorSummary = document.getElementById('errorsSummary');
-
 
     resetErrors([reasonNameInput, dateFromInput, dateToInput, employeeInput, isAcceptedInput]
         , [errorReasonName, errorDateFrom, errorDateTo, errorEmployee, errorIsAccepted], errorSummary);
