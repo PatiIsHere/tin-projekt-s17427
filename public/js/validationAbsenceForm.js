@@ -1,5 +1,8 @@
 function validateForm() {
 
+    //dodac to argumentow funkcji dwa parametry - currenct DateFrom/ currentDateTo i jak sa rozne to walidacja
+    //a jak takie same to nie uruchamiaj walidacji
+
     const reasonNameInput = document.getElementById('IdReason');
     const dateFromInput = document.getElementById('DateFrom');
     const dateToInput = document.getElementById('DateTo');
