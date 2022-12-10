@@ -33,14 +33,26 @@ const Absence = sequelize.define('Absence', {
             notEmpty: {
                 msg: "Pole jest wymagane"
             },
-            isDate: true,
-            isNotFromPast(value) {
-                //porownanie value < Date.now() porownuje jeszcze czas i milisekundy seta i checka na ustawieniu
-                //dzisiejszej daty sie krzacza - musi byc literal
-                if (value < Sequelize.literal('NOW() - INTERVAL \'7d\'')) {
-                    throw new Error('Data od nie może być z przeszłości');
-                }
-            }
+            isDate: true
+            //
+            // isNotFromPast(value) {
+            //     //console.log(value !== this.DateFrom)
+            //     console.log(value)
+            //     console.log(this.DateFrom);
+            //     console.log(this.previous('DateFrom'));
+            //
+            //     if (value !== this.DateFrom) {
+            //         const today = new Date();
+            //         const year = today.getFullYear();
+            //         const month = today.getMonth();
+            //         const day = today.getDate();
+            //         const mergeDate = new Date(year, month, day);
+            //
+            //         if (value < mergeDate) {
+            //             throw new Error('`Data od` nie może być z przeszłości');
+            //         }
+            //     }
+            // }
         }
     },
     DateTo: {
@@ -53,8 +65,9 @@ const Absence = sequelize.define('Absence', {
             isDate: true,
             isAfterDateFrom(value) {
                 if (value < this.DateFrom) {
-                    throw new Error('Data to nie może być wcześniej niż data od');
+                    throw new Error('`Data do` nie może być wcześniej niż data od');
                 }
+                return true
             }
         }
     },

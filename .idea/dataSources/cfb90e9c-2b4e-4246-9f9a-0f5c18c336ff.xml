@@ -1134,7 +1134,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="303" parent="300" name="IdAbsence">
-      <AutoIncrement>4</AutoIncrement>
+      <AutoIncrement>5</AutoIncrement>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1217,7 +1217,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="319" parent="301" name="SecondNam">
+    <column id="319" parent="301" name="SecondName">
       <DataType>varchar(255)|0s</DataType>
       <Position>3</Position>
     </column>

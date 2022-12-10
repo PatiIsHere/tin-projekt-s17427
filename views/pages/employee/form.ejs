@@ -64,7 +64,7 @@
                 <tbody>
                 <% for (let e of emp.absences) { %>
                     <tr>
-                        <td><a href="/absence/details/<%= e.reason.IdReason %>"><%= e.reason.Name %></a></td>
+                        <td><a href="/reason/details/<%= e.reason.IdReason %>"><%= e.reason.Name %></a></td>
                         <td class="non-essential-row"><%= e.DateFrom.toLocaleDateString('pl-PL') %></td>
                         <td><%= e.DateTo.toLocaleDateString('pl-PL') %></td>
                         <td class="non-essential-row"><%= e.IsAccepted === true ? 'Tak' : 'Nie' %></td>

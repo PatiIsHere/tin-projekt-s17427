@@ -7,7 +7,45 @@ exports.showAbsenceList = (req, res, next) => {
         .then(absences => {
             res.render('pages/absence/list', {
                 absences: absences,
-                navLocation: 'absence'
+                navLocation: 'absence',
+                listMode: ''
+            });
+        });
+}
+
+exports.showAbsenceListAfterDel = (req, res, next) => {
+    AbsenceRepository.getAbsences()
+        .then(absences => {
+            console.log("DUPA")
+            res.render('pages/absence/list', {
+                absences: absences,
+                navLocation: 'absence',
+                listMode: 'showInfo',
+                infoType: 'deleted'
+            });
+        });
+}
+
+exports.showAbsenceListAfterUpd = (req, res, next) => {
+    AbsenceRepository.getAbsences()
+        .then(absences => {
+            res.render('pages/absence/list', {
+                absences: absences,
+                navLocation: 'absence',
+                listMode: 'showInfo',
+                infoType: 'updated'
+            });
+        });
+}
+
+exports.showAbsenceListAfterAdd = (req, res, next) => {
+    AbsenceRepository.getAbsences()
+        .then(absences => {
+            res.render('pages/absence/list', {
+                absences: absences,
+                navLocation: 'absence',
+                listMode: 'showInfo',
+                infoType: 'added'
             });
         });
 }
@@ -37,7 +75,6 @@ exports.showAddAbsenceForm = (req, res, next) => {
 
 exports.showAbsenceDetails = (req, res, next) => {
     const absenceId = req.params.IdAbsence;
-    console.log(AbsenceRepository.getPossibleAcceptance())
     let allEmps, allReasons;
     EmployeeRepository.getEmployees()
         .then(emps => {
@@ -98,7 +135,7 @@ exports.addAbsence = (req, res, next) => {
 
     AbsenceRepository.createAbsence(absenceData)
         .then(result => {
-            res.redirect('/absence');
+            res.redirect('/absence/added');
         })
         .catch(err => {
             EmployeeRepository.getEmployees()
@@ -128,15 +165,14 @@ exports.updateAbsence = (req, res, next) => {
     const absenceData = {...req.body};
     AbsenceRepository.updateAbsence(absenceId, absenceData)
         .then(result => {
-            res.redirect('/absence');
+            res.redirect('/absence/updated');
         })
 }
 
 exports.deleteAbsence = (req, res, next) => {
     const absenceId = req.params.IdAbsence;
-    console.log(absenceId)
     AbsenceRepository.deleteAbsence(absenceId)
         .then(result => {
-            res.redirect('/absence');
+            res.redirect('/absence/deleted');
         })
 }

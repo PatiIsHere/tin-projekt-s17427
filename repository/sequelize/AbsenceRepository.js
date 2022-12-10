@@ -3,6 +3,7 @@ const Absence = require('../../model/sequelize/Absence')
 const Reason = require('../../model/sequelize/Reason')
 const {Sequelize} = require("sequelize");
 
+
 exports.getAbsences = () => {
     return Absence.findAll({
         include: [
@@ -32,7 +33,6 @@ exports.getAbsenceById = (absenceId) => {
 }
 
 exports.createAbsence = (newAbsenceData) => {
-    console.log(newAbsenceData);
     return Absence.create({
         IdEmployee: newAbsenceData.IdEmployee,
         IdReason: newAbsenceData.IdReason,
@@ -57,8 +57,4 @@ exports.getPossibleAcceptance = () => {
         attributes: ['IsAccepted'],
         group: 'IsAccepted'
     })
-}
-//co to ma byc?
-// exports.deleteManyAbsences = (absenceIds) => {
-//     return Absence.find({ IdAbsence: { [Sequelize.Op.in]: absenceIds}})
-// }
+};

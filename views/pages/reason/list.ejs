@@ -1,5 +1,20 @@
 <%- include('../../fragments/header.ejs') %>
 
+<% if (listMode == 'showInfo') { %>
+    <div id="delete-info" class="<%= infoType === 'deleted' ? 'info-activated' : 'info-disabled' %>"><img
+                src="/images/deleteICON.png" alt="Delete icon" width="25px">Powód usuniety
+        pomyślnie
+    </div>
+    <div id="update-info" class="<%= infoType == 'updated' ? 'info-activated' : 'info-disabled' %>"><img
+                src="/images/updateICON.png" alt="Update icon" width="25px">Powód
+        zaktualizowany pomyślnie
+    </div>
+    <div id="insert-info" class="<%= infoType == 'added' ? 'info-activated' : 'info-disabled' %>"><img
+                src="/images/addICON.png" alt="Add icon" width="25px">Powód dodany
+        pomyślnie
+    </div>
+<% } %>
+
 <main>
     <h2>Lista powodów</h2>
     <table class="table-list">

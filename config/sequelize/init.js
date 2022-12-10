@@ -24,7 +24,7 @@ module.exports = () => {
 
     let allEmployees, allReasons;
     return sequelize
-        .sync({force: true})
+        .sync({force: true}) //przy opcji force:true - za kazdym restartem jest re-do bazy danych
         .then(() => {
             return Employee.findAll();
         })
@@ -67,6 +67,8 @@ module.exports = () => {
             return Absence.findAll();
         })
         .then(absences => {
+            console.log('tutaj absence lenght')
+            console.log(absences.length)
             if (!absences || absences.length === 0) {
                 return Absence.bulkCreate([
                     {

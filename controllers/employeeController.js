@@ -5,7 +5,44 @@ exports.showEmployeeList = (req, res, next) => {
         .then(emps => {
             res.render('pages/employee/list', {
                 emps: emps,
-                navLocation: 'emp'
+                navLocation: 'emp',
+                listMode: ''
+            });
+        });
+}
+
+exports.showEmployeeListAfterDel = (req, res, next) => {
+    EmployeeRepository.getEmployees()
+        .then(emps => {
+            res.render('pages/employee/list', {
+                emps: emps,
+                navLocation: 'emp',
+                listMode: 'showInfo',
+                infoType: 'deleted'
+            });
+        });
+}
+
+exports.showEmployeeListAfterUpd = (req, res, next) => {
+    EmployeeRepository.getEmployees()
+        .then(emps => {
+            res.render('pages/employee/list', {
+                emps: emps,
+                navLocation: 'emp',
+                listMode: 'showInfo',
+                infoType: 'updated'
+            });
+        });
+}
+
+exports.showEmployeeListAfterAdd = (req, res, next) => {
+    EmployeeRepository.getEmployees()
+        .then(emps => {
+            res.render('pages/employee/list', {
+                emps: emps,
+                navLocation: 'emp',
+                listMode: 'showInfo',
+                infoType: 'added'
             });
         });
 }
@@ -64,7 +101,7 @@ exports.addEmployee = (req, res, next) => {
     console.log(empData)
     EmployeeRepository.createEmployee(empData)
         .then(result => {
-            res.redirect('/employee');
+            res.redirect('/employee/added');
         })
         .catch(err => {
             res.render('pages/employee/form', {
@@ -84,7 +121,7 @@ exports.updateEmployee = (req, res, next) => {
     const empData = {...req.body};
     EmployeeRepository.updateEmployee(empId, empData)
         .then(result => {
-            res.redirect('/employee');
+            res.redirect('/employee/updated');
         })
 }
 
@@ -93,6 +130,6 @@ exports.deleteEmployee = (req, res, next) => {
     console.log(empId)
     EmployeeRepository.deleteEmployee(empId)
         .then(result => {
-            res.redirect('/employee');
+            res.redirect('/employee/deleted');
         })
 }

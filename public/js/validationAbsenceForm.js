@@ -1,4 +1,4 @@
-function validateForm() {
+function validateForm(isDateValidated) {
 
     //dodac to argumentow funkcji dwa parametry - currenct DateFrom/ currentDateTo i jak sa rozne to walidacja
     //a jak takie same to nie uruchamiaj walidacji
@@ -40,20 +40,22 @@ function validateForm() {
 
     const nowString = [year, month, day].join('-');
 
-    if (!checkRequired(dateFromInput.value)) {
-        valid = false;
-        dateFromInput.classList.add("error-input");
-        errorDateFrom.innerText = "Pole jest wymagane";
-    } else if (!checkDate(dateFromInput.value)) {
-        valid = false;
-        dateFromInput.classList.add("error-input");
-        errorDateFrom.innerText = "Pole powinno zawierać datę w formacie yyyy-MM-dd";
-    } else if (!checkDateIsAfter(dateFromInput.value, nowString)) {
-        valid = false;
-        dateFromInput.classList.add("error-input");
-        errorDateFrom.innerText = "Data nie może być z przeszłości";
-    }
+    if (isDateValidated) {
 
+        if (!checkRequired(dateFromInput.value)) {
+            valid = false;
+            dateFromInput.classList.add("error-input");
+            errorDateFrom.innerText = "Pole jest wymagane";
+        } else if (!checkDate(dateFromInput.value)) {
+            valid = false;
+            dateFromInput.classList.add("error-input");
+            errorDateFrom.innerText = "Pole powinno zawierać datę w formacie yyyy-MM-dd";
+        } else if (!checkDateIsAfter(dateFromInput.value, nowString)) {
+            valid = false;
+            dateFromInput.classList.add("error-input");
+            errorDateFrom.innerText = "Data nie może być z przeszłości";
+        }
+    }
     if (!checkRequired(dateToInput.value)) {
         valid = false;
         dateToInput.classList.add("error-input");
@@ -67,6 +69,7 @@ function validateForm() {
         dateToInput.classList.add("error-input");
         errorDateTo.innerText = "Data zakończenia nie może być przed datą rozpoczęcia";
     }
+
 
     if (!checkRequired(employeeInput.value)) {
         valid = false;
