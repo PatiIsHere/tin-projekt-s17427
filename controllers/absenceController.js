@@ -16,7 +16,6 @@ exports.showAbsenceList = (req, res, next) => {
 exports.showAbsenceListAfterDel = (req, res, next) => {
     AbsenceRepository.getAbsences()
         .then(absences => {
-            console.log("DUPA")
             res.render('pages/absence/list', {
                 absences: absences,
                 navLocation: 'absence',

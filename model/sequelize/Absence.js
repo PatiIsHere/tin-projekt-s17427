@@ -33,26 +33,21 @@ const Absence = sequelize.define('Absence', {
             notEmpty: {
                 msg: "Pole jest wymagane"
             },
-            isDate: true
-            //
-            // isNotFromPast(value) {
-            //     //console.log(value !== this.DateFrom)
-            //     console.log(value)
-            //     console.log(this.DateFrom);
-            //     console.log(this.previous('DateFrom'));
-            //
-            //     if (value !== this.DateFrom) {
-            //         const today = new Date();
-            //         const year = today.getFullYear();
-            //         const month = today.getMonth();
-            //         const day = today.getDate();
-            //         const mergeDate = new Date(year, month, day);
-            //
-            //         if (value < mergeDate) {
-            //             throw new Error('`Data od` nie może być z przeszłości');
-            //         }
-            //     }
-            // }
+            isDate: true,
+            isNotFromPast(value) {
+                //validate only for new records
+                if (this.IdAbsence === null) {
+                    const today = new Date();
+                    const year = today.getFullYear();
+                    const month = today.getMonth();
+                    const day = today.getDate();
+                    const mergeDate = new Date(year, month, day);
+
+                    if (value < mergeDate) {
+                        throw new Error('`Data od` nie może być z przeszłości');
+                    }
+                }
+            }
         }
     },
     DateTo: {

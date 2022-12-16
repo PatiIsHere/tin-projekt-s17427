@@ -1,4 +1,6 @@
 function validateForm(isDateValidated) {
+    //sprawdzic czy jest pusty string jako id z formularza i jak jest to zalaczyc walidacje dat
+    //jak nie to przejsc
 
     //dodac to argumentow funkcji dwa parametry - currenct DateFrom/ currentDateTo i jak sa rozne to walidacja
     //a jak takie same to nie uruchamiaj walidacji
