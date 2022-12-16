@@ -68,7 +68,7 @@
                         <td class="non-essential-row"><%= e.DateFrom.toLocaleDateString('pl-PL') %></td>
                         <td><%= e.DateTo.toLocaleDateString('pl-PL') %></td>
                         <td class="non-essential-row"><%= e.IsAccepted === true ? 'Tak' : 'Nie' %></td>
-                        <td><%= e.reason.SalaryPercentage * 100 %></td>
+                        <td><%= e.reason.SalaryPercentage %></td>
                     </tr>
                 <% } %>
 
