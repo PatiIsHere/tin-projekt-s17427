@@ -1,0 +1,59 @@
+<%- include('../../fragments/header.ejs') %>
+
+<% if (listMode == 'showInfo') { %>
+    <div id="delete-info" class="<%= infoType === 'deleted' ? 'info-activated' : 'info-disabled' %>"><img
+                src="/images/deleteICON.png" alt="Delete icon" width="25px">Nieobecność usunieta
+        pomyślnie
+    </div>
+    <div id="update-info" class="<%= infoType == 'updated' ? 'info-activated' : 'info-disabled' %>"><img
+                src="/images/updateICON.png" alt="Update icon" width="25px">Nieobecność
+        zaktualizowana pomyślnie
+    </div>
+    <div id="insert-info" class="<%= infoType == 'added' ? 'info-activated' : 'info-disabled' %>"><img
+                src="/images/addICON.png" alt="Add icon" width="25px">Nieobecność dodana
+        pomyślnie
+    </div>
+<% } %>
+
+<main>
+    <h2>Lista nieobecności</h2>
+    <table class="table-list">
+        <thead>
+
+        <tr>
+            <th>Typ nieobecności</th>
+            <th class="non-essential-row">Data OD</th>
+            <th>Data DO</th>
+            <th class="non-essential-row">Imię</th>
+            <th>Nazwisko</th>
+            <th class="non-essential-row">Akceptacja</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (let absence of absences) { %>
+            <tr>
+                <td><%= absence.reason.Name %></td>
+                <td class="non-essential-row"><%= absence.DateFrom.toLocaleDateString('pl-PL') %></td>
+                <td><%= absence.DateTo.toLocaleDateString('pl-PL') %></td>
+                <td class="non-essential-row"><%= absence.employee.Name %></td>
+                <td><%= absence.employee.Surname %></td>
+                <td class="non-essential-row"><%= absence.IsAccepted === true ? 'Tak' : 'Nie' %></td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="/absence/details/<%= absence.IdAbsence %>" class="list-actions-button-details">Szczegóły</a>
+                            <a href="/absence/edit/<%= absence.IdAbsence %>" class="list-actions-button-edit">Edytuj</a>
+                            <a href="/absence/delete/<%= absence.IdAbsence %>"
+                               class="list-actions-button-delete">Usuń</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <p><a href="/absence/add" class="button-add">Dodaj nową nieobecność</a></p>
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
