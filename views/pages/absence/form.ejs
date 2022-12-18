@@ -1,7 +1,7 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <script type="application/javascript" src="/js/validationAbsenceForm.js"></script>
-    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <!--    <script type="application/javascript" src="/js/validationAbsenceForm.js"></script>-->
+    <!--    <script type="application/javascript" src="/js/validationCommon.js"></script>-->
     <h2><%= pageTitle %></h2>
 
     <form class="form" method="post" action="<%= formAction %>" novalidate
@@ -11,13 +11,12 @@
         <label>Typ nieobecności:</label>
         <select id="IdReason" name="IdReason"
                 class="<%= validationErrors.find(e => e.path.includes('IdReason')) ? 'error-input' : '' %>"
-                required <%= (formMode === 'showDetails') ? 'disabled' : '' %>
+                required <%= (formMode === 'showDetails') ? 'disabled' : '' %>>
 
-        >
             <option value="" selected>-- Wybierz typ nieobecności--</option>
             <% for ( let i = 0; i < allReasons.length; i++) { let reason = allReasons[i]; %>
             <option value="<%= reason.IdReason %>" label="<%= reason.Name %>"
-                    <%= (absence.IdAbsence && reason.IdReason.toString() === absence.reason.IdReason.toString()) ? 'selected' : '' %>>
+                    <%= (reason.IdReason.toString() == absence.IdReason) ? 'selected' : '' %>>
 
             </option>
             <% } %>
@@ -70,7 +69,7 @@
             <option value="<%= emp.IdEmployee %>" label="<%= emp.Name + ', ' +
             (emp.SecondName !== null ? emp.SecondName + ' ' : '')
             + emp.Surname %>"
-                    <%= (absence.IdAbsence && emp.IdEmployee.toString() === absence.employee.IdEmployee.toString()) ? 'selected' : '' %>>
+                    <%= (emp.IdEmployee.toString() == absence.IdEmployee) ? 'selected' : '' %>>
 
             </option>
             <% } %>
@@ -113,7 +112,11 @@
             </div>
         <% } %>
         <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text"></p>
+            <p id="errorsSummary" class="errors-text">
+                <% if (validationErrors.length > 0){ %>
+                    Formularz zawiera błędy
+                <% } %>
+            </p>
             <% if(formMode !== 'showDetails') { %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
                 <a class="form-button-cancel" href="/absence">Anuluj</a>

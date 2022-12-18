@@ -33,7 +33,7 @@ const Absence = sequelize.define('Absence', {
             notEmpty: {
                 msg: "Pole jest wymagane"
             },
-            isDate: true,
+            //isDate: true,
             isNotFromPast(value) {
                 //validate only for new records
                 if (this.IdAbsence === null) {
@@ -57,7 +57,7 @@ const Absence = sequelize.define('Absence', {
             notEmpty: {
                 msg: "Pole jest wymagane"
             },
-            isDate: true,
+            //isDate: true,
             isAfterDateFrom(value) {
                 if (value < this.DateFrom) {
                     throw new Error('`Data do` nie może być wcześniej niż data od');

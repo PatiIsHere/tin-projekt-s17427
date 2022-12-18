@@ -10,7 +10,7 @@
 
         <label for="reasonName">Typ nieobecności: <span class="symbol-required">*</span></label>
         <input type="text" name="Name" id="Name" placeholder="2-50 znaków"
-               class="<% validationErrors.find(e => e.path.includes('Name')) ? 'error-input' : '' %>"
+               class="<%= validationErrors.find(e => e.path.includes('Name')) ? 'error-input' : '' %>"
                value="<%= reason.Name %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
         <span id="errorReasonName" class="errors-text">
@@ -21,7 +21,7 @@
 
         <label for="salaryPercentage">% Wynagrodzenia: <span class="symbol-required">*</span></label>
         <input type="number" name="SalaryPercentage" id="SalaryPercentage" placeholder="Od 0.00 do 1.00"
-               class="<% validationErrors.find(e => e.path.includes('SalaryPercentage')) ? 'error-input' : '' %>"
+               class="<%= validationErrors.find(e => e.path.includes('SalaryPercentage')) ? 'error-input' : '' %>"
                value="<%= reason.SalaryPercentage %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
         <span id="errorSalaryPercentage" class="errors-text">
@@ -66,7 +66,11 @@
         <% } %>
 
         <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text"></p>
+            <p id="errorsSummary" class="errors-text">
+                <% if (validationErrors.length > 0){ %>
+                    Formularz zawiera błędy
+                <% } %>
+            </p>
             <% if(formMode !== 'showDetails') { %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
                 <a class="form-button-cancel" href="/reason">Anuluj</a>

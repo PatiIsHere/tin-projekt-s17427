@@ -1,12 +1,12 @@
-const employeeRouter = require('./routes/employeeRoute');
-const reasonRouter = require('./routes/reasonRoute');
-const absenceRouter = require('./routes/absenceRouter');
 const sequelizeInit = require('./config/sequelize/init');
 sequelizeInit()
     .catch(err => {
         console.log(err);
     });
 
+const employeeRouter = require('./routes/employeeRoute');
+const reasonRouter = require('./routes/reasonRoute');
+const absenceRouter = require('./routes/absenceRouter');
 
 const empApiRouter = require('./routes/api/EmployeeApiRoute');
 const reasonApiRouter = require('./routes/api/ReasonApiRoute');
