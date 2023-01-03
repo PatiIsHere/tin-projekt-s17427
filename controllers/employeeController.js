@@ -104,6 +104,11 @@ exports.addEmployee = (req, res, next) => {
             res.redirect('/employee/added');
         })
         .catch(err => {
+            err.errors.forEach(e => {
+                if (e.path.includes('Email') && e.type == 'unique violation') {
+                    e.message = "Podany adres email jest już używany";
+                }
+            });
             res.render('pages/employee/form', {
                 emp: empData,
                 pageTitle: 'Nowy pracownik',
@@ -122,6 +127,25 @@ exports.updateEmployee = (req, res, next) => {
     EmployeeRepository.updateEmployee(empId, empData)
         .then(result => {
             res.redirect('/employee/updated');
+        })
+        .catch(err => {
+            err.errors.forEach(e => {
+                if (e.path.includes('Email') && e.type == 'unique violation') {
+                    e.message = "Podany adres email jest już używany";
+                }
+            });
+            EmployeeRepository.getEmployeeById(empId)
+                .then(emp => {
+                    res.render('pages/employee/form', {
+                        emp: emp,
+                        formMode: 'edit',
+                        pageTitle: 'Edycja pracownika',
+                        btnLabel: 'Edytuj pracownika',
+                        formAction: '/employee/edit',
+                        navLocation: 'emp',
+                        validationErrors: err.errors
+                    });
+                })
         })
 }
 

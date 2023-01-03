@@ -4,14 +4,6 @@ sequelizeInit()
         console.log(err);
     });
 
-const employeeRouter = require('./routes/employeeRoute');
-const reasonRouter = require('./routes/reasonRoute');
-const absenceRouter = require('./routes/absenceRouter');
-
-const empApiRouter = require('./routes/api/EmployeeApiRoute');
-const reasonApiRouter = require('./routes/api/ReasonApiRoute');
-const absenceApiRouter = require('./routes/api/AbsenceApiRoute');
-
 
 var createError = require('http-errors');
 var express = require('express');
@@ -38,6 +30,20 @@ app.use(express.json({
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+const session = require('express-session');
+app.use(session({
+    secret: 'my-secret-password',
+    resave: false
+}))
+
+const employeeRouter = require('./routes/employeeRoute');
+const reasonRouter = require('./routes/reasonRoute');
+const absenceRouter = require('./routes/absenceRouter');
+
+const empApiRouter = require('./routes/api/EmployeeApiRoute');
+const reasonApiRouter = require('./routes/api/ReasonApiRoute');
+const absenceApiRouter = require('./routes/api/AbsenceApiRoute');
 
 app.use('/', indexRouter);
 app.use('/employee', employeeRouter);

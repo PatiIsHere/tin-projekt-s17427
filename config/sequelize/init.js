@@ -32,11 +32,11 @@ module.exports = () => {
             //TODO tutaj dwa == czy trzy ===?
             if (!emps || emps.length === 0) {
                 return Employee.bulkCreate([
-                    {Name: 'Jan', SecondName: 'Andrzej', Surname: 'Kowalski'},
-                    {Name: 'Andrzej', SecondName: 'Jan', Surname: 'Niekowalski'},
-                    {Name: 'Michał', SecondName: null, Surname: 'Testowy'},
-                    {Name: 'Kazimierz', SecondName: null, Surname: 'Tetmajer'},
-                    {Name: 'Janina', SecondName: 'Anna', Surname: 'Bąk'}
+                    {Name: 'Jan', SecondName: 'Andrzej', Surname: 'Kowalski', Email: 'akowalski@absence.com'},
+                    {Name: 'Andrzej', SecondName: 'Jan', Surname: 'Niekowalski', Email: 'jniekowalski@absence.com'},
+                    {Name: 'Michał', SecondName: null, Surname: 'Testowy', Email: 'mtestowy@absence.com'},
+                    {Name: 'Kazimierz', SecondName: null, Surname: 'Tetmajer', Email: 'ktetmajer@absence.com'},
+                    {Name: 'Janina', SecondName: 'Anna', Surname: 'Bąk', Email: 'jbak@absence.com'}
                 ])
                     .then(() => {
                         return Employee.findAll();

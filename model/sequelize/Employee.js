@@ -46,6 +46,23 @@ const Employee = sequelize.define('Employee', {
                 msg: "Pole powinno zawierać od 2 do 100 znaków"
             }
         }
+    },
+    Email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+            notEmpty: {
+                msg: "Pole jest wymagane"
+            },
+            len: {
+                args: [6, 100],
+                msg: "Pole powinno zawierać od 6 do 100 znaków"
+            },
+            isEmail: {
+                msg: 'Pole powinno zawierać prawidłowy adres email'
+            }
+        }
     }
 })
 

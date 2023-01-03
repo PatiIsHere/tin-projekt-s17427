@@ -26,7 +26,8 @@ exports.createEmployee = (newEmpData) => {
     return Employee.create({
         Name: newEmpData.Name,
         SecondName: newEmpData.SecondName,
-        Surname: newEmpData.Surname
+        Surname: newEmpData.Surname,
+        Email: newEmpData.Email
     });
 };
 
