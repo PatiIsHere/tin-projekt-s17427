@@ -21,6 +21,12 @@ exports.getEmployeeById = (empId) => {
         });
 };
 
+exports.findByEmail = (email) => {
+    return Employee.findOne({
+        where: {Email: email}
+    })
+}
+
 exports.createEmployee = (newEmpData) => {
     console.log(newEmpData);
     return Employee.create({

@@ -27,3 +27,22 @@
     </ul>
 </nav>
 
+<% if(!loggedUser) { %>
+    <div id="login">
+        <h5> Logowanie </h5>
+        <form method="post" action="/login" novalidate>
+            <label for="loginEmail">Email:</label>
+            <input type="Email" id="loginEmail" name="Email">
+
+            <label for="loginPassword">Hasło:</label>
+            <input type="Password" id="loginPassword" name="Password">
+
+            <input type="submit" value="Zaloguj się">
+            <span id="loginErrors"><%= loginError ? loginError : '' %></span>
+        </form>
+    </div>
+<% }else { %>
+    <span>Jesteś zalogowany jako: <%= loggedUser.Name + " " + loggedUser.Surname %></span>
+    <a href="/logout">Wyloguj się</a>
+<% } %>
+
