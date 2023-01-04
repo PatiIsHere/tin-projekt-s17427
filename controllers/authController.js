@@ -1,4 +1,5 @@
 const EmployeeRepository = require('../repository/sequelize/EmployeeRepository')
+const authUtil = require('../util/authUtils')
 
 exports.login = (req, res, next) => {
     const email = req.body.Email;
@@ -6,14 +7,12 @@ exports.login = (req, res, next) => {
 
     EmployeeRepository.findByEmail(email)
         .then(emp => {
-            console.log("dupa")
-            console.log(emp)
             if (!emp) {
                 res.render('index', {
                     navLocation: '',
                     loginError: "Nieprawidłowy adres email lub hasło"
                 })
-            } else if (emp.Password == password) {
+            } else if (authUtil.comparePassword(password, emp.Password)) {
                 req.session.loggedUser = emp;
                 res.redirect('/')
             } else {

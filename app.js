@@ -46,6 +46,8 @@ app.use((req, res, next) => {
     next();
 })
 
+const authUtil = require('./util/authUtils')
+
 const employeeRouter = require('./routes/employeeRoute');
 const reasonRouter = require('./routes/reasonRoute');
 const absenceRouter = require('./routes/absenceRouter');
@@ -55,7 +57,7 @@ const reasonApiRouter = require('./routes/api/ReasonApiRoute');
 const absenceApiRouter = require('./routes/api/AbsenceApiRoute');
 
 app.use('/', indexRouter);
-app.use('/employee', employeeRouter);
+app.use('/employee', authUtil.permitAuthenticatedUser, employeeRouter);
 app.use('/reason', reasonRouter);
 app.use('/absence', absenceRouter);
 

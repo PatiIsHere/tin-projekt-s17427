@@ -52,6 +52,18 @@
             <% } %>
         </span>
 
+        <% if(formMode == 'createNew' || formMode == 'edit') { %>
+            <label for="password">Password: <span class="symbol-required">*</span></label>
+            <input type="text" name="Password" id="Password" placeholder="preferowane 6 znaków"
+                   class="<%= validationErrors.find(e => e.path.includes('Password')) ? 'error-input' : '' %>"
+                    <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
+            <span id="errorEmail" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('Email'))){ %>
+                    <%= (validationErrors.find(e => e.path.includes('Email'))).message %>
+                <% } %>
+            </span>
+        <% } %>
+
         <% if (formMode == 'showDetails') { %>
             <div class="section-buttons">
                 <a href="/employee/edit/<%= emp.IdEmployee %>" class="action-button-gotoEdit">Edytuj</a>

@@ -5,6 +5,8 @@ const Reason = require('../../model/sequelize/Reason');
 const Absence = require('../../model/sequelize/Absence');
 const {Sequelize} = require("sequelize");
 
+const authUtil = require('../../util/authUtils')
+
 module.exports = () => {
     Employee.hasMany(Absence, {
         as: 'absences',
@@ -37,30 +39,36 @@ module.exports = () => {
                         SecondName: 'Andrzej',
                         Surname: 'Kowalski',
                         Email: 'akowalski@absence.com',
-                        Password: '123456'
+                        Password: authUtil.hashPassword('123456')
                     },
                     {
                         Name: 'Andrzej',
                         SecondName: 'Jan',
                         Surname: 'Niekowalski',
                         Email: 'jniekowalski@absence.com',
-                        Password: '234567'
+                        Password: authUtil.hashPassword('234567')
                     },
                     {
                         Name: 'Michał',
                         SecondName: null,
                         Surname: 'Testowy',
                         Email: 'mtestowy@absence.com',
-                        Password: '345678'
+                        Password: authUtil.hashPassword('345678')
                     },
                     {
                         Name: 'Kazimierz',
                         SecondName: null,
                         Surname: 'Tetmajer',
                         Email: 'ktetmajer@absence.com',
-                        Password: '456789'
+                        Password: authUtil.hashPassword('456789')
                     },
-                    {Name: 'Janina', SecondName: 'Anna', Surname: 'Bąk', Email: 'jbak@absence.com', Password: '567890'}
+                    {
+                        Name: 'Janina',
+                        SecondName: 'Anna',
+                        Surname: 'Bąk',
+                        Email: 'jbak@absence.com',
+                        Password: authUtil.hashPassword('567890')
+                    }
                 ])
                     .then(() => {
                         return Employee.findAll();
