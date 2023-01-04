@@ -28,7 +28,16 @@ app.use(express.json({
 }))
 
 app.use(express.urlencoded({extended: false}));
-app.use(cookieParser());
+app.use(cookieParser('secret'));
+
+const i18n = require('i18n');
+i18n.configure({
+    locales: ['pl', 'en'], // języki dostępne w aplikacji. Dla każdego z nich należy utworzyć osobny słownik
+    directory: path.join(__dirname, 'locales'), // ścieżka do katalogu, w którym znajdują się słowniki
+    objectNotation: true, // umożliwia korzstanie z zagnieżdżonych kluczy w notacji obiektowej
+    cookie: 'absence-hr-lang', //nazwa cookies, które nasza aplikacja będzie wykorzystywać do przechowania informacji
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 const session = require('express-session');
