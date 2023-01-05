@@ -8,7 +8,7 @@
     <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
         <input type="hidden" name="IdEmployee" value="<%= emp.IdEmployee %>">
 
-        <label for="firstName">Imię: <span class="symbol-required">*</span></label>
+        <label for="firstName"><%= __('employee.fields.name') %>: <span class="symbol-required">*</span></label>
         <input type="text" name="Name" id="Name" placeholder="2-50 znaków"
                class="<%= validationErrors.find(e => e.path.includes('Name')) ? 'error-input' : '' %>"
                value="<%= emp.Name %>"
@@ -19,7 +19,7 @@
             <% } %>
         </span>
 
-        <label for="secondName">Drugie imię: </label>
+        <label for="secondName"><%= __('employee.fields.secondName') %>: </label>
         <input type="text" name="SecondName" id="SecondName" placeholder="Brak lub 2-50 znaków"
                class="<%= validationErrors.find(e => e.path.includes('SecondName')) ? 'error-input' : '' %>"
                value="<%= emp.SecondName %>"
@@ -30,7 +30,7 @@
             <% } %>
         </span>
 
-        <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
+        <label for="lastName"><%= __('employee.fields.surname') %>: <span class="symbol-required">*</span></label>
         <input type="text" name="Surname" id="Surname" placeholder="2-100 znaków"
                class="<%= validationErrors.find(e => e.path.includes('Surname')) ? 'error-input' : '' %>"
                value="<%= emp.Surname %>"
@@ -41,7 +41,7 @@
             <% } %>
         </span>
 
-        <label for="email">Email: <span class="symbol-required">*</span></label>
+        <label for="email"><%= __('employee.fields.email') %>: <span class="symbol-required">*</span></label>
         <input type="text" name="Email" id="Email" placeholder="6-100 znaków"
                class="<%= validationErrors.find(e => e.path.includes('Email')) ? 'error-input' : '' %>"
                value="<%= emp.Email %>"
@@ -53,7 +53,7 @@
         </span>
 
         <% if(formMode == 'createNew' || formMode == 'edit') { %>
-            <label for="password">Password: <span class="symbol-required">*</span></label>
+            <label for="password"><%= __('employee.fields.password') %>: <span class="symbol-required">*</span></label>
             <input type="text" name="Password" id="Password" placeholder="preferowane 6 znaków"
                    class="<%= validationErrors.find(e => e.path.includes('Password')) ? 'error-input' : '' %>"
                     <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>

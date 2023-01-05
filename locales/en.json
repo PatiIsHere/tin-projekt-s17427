@@ -1,1 +1,12 @@
-{}
+{
+	"employee": {
+		"fields": {
+			"asd": "Name",
+			"name": "employee.fields.name",
+			"secondName": "employee.fields.secondName",
+			"surname": "employee.fields.surname",
+			"email": "employee.fields.email",
+			"password": "employee.fields.password"
+		}
+	}
+}

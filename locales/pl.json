@@ -25,13 +25,14 @@
   },
   "employee": {
     "fields": {
-      "firstName": "Imię",
+      "name": "Imię",
       "secondName": "Drugie imię",
-      "lastName": "Nazwisko",
-      "email": "Email"
+      "surname": "Nazwisko",
+      "email": "Email",
+      "password": "Hasło"
     },
     "list": {
-      "title": "Pracownicy",
+      "title": "Lista pracowników",
       "addNew": "Dodaj nowego pracownika",
       "noData": "Brak pracowników w bazie",
       "pageTitle": "Lista pracowników"
