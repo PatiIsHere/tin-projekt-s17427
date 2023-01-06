@@ -1,8 +1,8 @@
 <%- include('../../fragments/header.ejs') %>
 
 <main>
-    <!--    <script type="application/javascript" src="/js/validationEmpForm.js"></script>-->
-    <!--    <script type="application/javascript" src="/js/validationCommon.js"></script>-->
+    <script type="application/javascript" src="/js/validationEmpForm.js"></script>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
     <h2><%= pageTitle %></h2>
 
     <form class="form" method="post" action="<%= formAction %>" novalidate
@@ -10,7 +10,7 @@
         <input type="hidden" name="IdEmployee" value="<%= emp.IdEmployee %>">
 
         <label for="firstName"><%= __('employee.fields.name') %>: <span class="symbol-required">*</span></label>
-        <input type="text" name="Name" id="Name" placeholder="2-50 znaków"
+        <input type="text" name="Name" id="Name" placeholder="<%= __('employee.form.placeholder.name') %>"
                class="<%= validationErrors.find(e => e.path.includes('Name')) ? 'error-input' : '' %>"
                value="<%= emp.Name %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
@@ -21,7 +21,8 @@
         </span>
 
         <label for="secondName"><%= __('employee.fields.secondName') %>: </label>
-        <input type="text" name="SecondName" id="SecondName" placeholder="Brak lub 2-50 znaków"
+        <input type="text" name="SecondName" id="SecondName"
+               placeholder="<%= __('employee.form.placeholder.secondName') %>"
                class="<%= validationErrors.find(e => e.path.includes('SecondName')) ? 'error-input' : '' %>"
                value="<%= emp.SecondName %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
@@ -32,7 +33,7 @@
         </span>
 
         <label for="lastName"><%= __('employee.fields.surname') %>: <span class="symbol-required">*</span></label>
-        <input type="text" name="Surname" id="Surname" placeholder="2-100 znaków"
+        <input type="text" name="Surname" id="Surname" placeholder="<%= __('employee.form.placeholder.surname') %>"
                class="<%= validationErrors.find(e => e.path.includes('Surname')) ? 'error-input' : '' %>"
                value="<%= emp.Surname %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
@@ -43,7 +44,7 @@
         </span>
 
         <label for="email"><%= __('employee.fields.email') %>: <span class="symbol-required">*</span></label>
-        <input type="text" name="Email" id="Email" placeholder="6-100 znaków"
+        <input type="text" name="Email" id="Email" placeholder="<%= __('employee.form.placeholder.email') %>"
                class="<%= validationErrors.find(e => e.path.includes('Email')) ? 'error-input' : '' %>"
                value="<%= emp.Email %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
@@ -55,7 +56,8 @@
 
         <% if(formMode == 'createNew' ) { %>
             <label for="password"><%= __('employee.fields.password') %>: <span class="symbol-required">*</span></label>
-            <input type="password" name="Password" id="Password" placeholder="preferowane 6 znaków"
+            <input type="password" name="Password" id="Password"
+                   placeholder="<%= __('employee.form.placeholder.password') %>"
                    class="<%= validationErrors.find(e => e.path.includes('Password')) ? 'error-input' : '' %>"
 
                     <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
@@ -116,6 +118,16 @@
             <% } %>
         </div>
     </form>
+
+    <div style="display: none">
+        <span id="errorMessage-default-form"><%= __('error.default-form') %></span>
+        <span id="errorMessage-required_value"><%= __('error.required_value') %></span>
+        <span id="errorMessage-required_2-50signs"><%= __('error.2-50signs') %></span>
+        <span id="errorMessage-required_2-100signs"><%= __('error.2-100signs') %></span>
+        <span id="errorMessage-required_6-100signs"><%= __('error.6-100signs') %></span>
+        <span id="errorMessage-required_email"><%= __('error.email') %></span>
+
+    </div>
 
 </main>
 

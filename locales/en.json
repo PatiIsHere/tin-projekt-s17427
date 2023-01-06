@@ -27,7 +27,7 @@
     "email": "Email",
     "password": "Password",
     "welcomeInfo": "Logged in as",
-    "btnLogInLabel": "Login"
+    "btnLogInLabel": "Login",
     "btnLogOutLabel": "Logout"
   },
   "employee": {
@@ -56,6 +56,13 @@
       },
       "details": {
         "pageTitle": "Employee details"
+      },
+      "placeholder": {
+        "password": "Preferred 6 signs",
+        "email": "6-100 signs",
+        "surname": "2-100 signs",
+        "secondName": "No value or 2-50 signs",
+        "name": "2-50 signs"
       }
     },
     "infoText": {
@@ -127,6 +134,10 @@
       },
       "details": {
         "pageTitle": "Reason details"
+      },
+      "placeholder": {
+        "name": "2-50 signs",
+        "salaryPercentage": "Between 0.00 and 1.00"
       }
     },
     "infoText": {
@@ -137,6 +148,17 @@
   },
   "error": {
     "uniqueEmail": "Provided email address is already in use",
-    "default-form": "Form contains errors"
+    "default-form": "Form contains errors",
+    "login": "Wrong email or password",
+    "required_value": "Value required",
+    "dateToBeforeDateFrom": "Date from cannot be before date to",
+    "dateFormat": "Field must contain date in format yyy-MM-dd",
+    "dateFromPast": "Date cannot be from the past",
+    "2-50signs": "Field should contain between 2 and 50 signs",
+    "2-100signs": "Field should contain between 2 and 100 signs",
+    "6-100signs": "Field should contain between 6 and 100 signs",
+    "email": "Field should contain correct email address",
+    "number": "Field should be number",
+    "numberBetween0And1": "Field should be number between 0.00 and 1.00"
   }
 }

@@ -27,7 +27,8 @@
     "email": "Email",
     "password": "Hasło",
     "welcomeInfo": "Jesteś zalogowany jako",
-    "btnLabel": "Zaloguj się"
+    "btnLogInLabel": "Zaloguj",
+    "btnLogOutLabel": "Wyloguj"
   },
   "employee": {
     "title": "Pracownik",
@@ -63,6 +64,13 @@
       },
       "details": {
         "pageTitle": "Szczegóły pracownika"
+      },
+      "placeholder": {
+        "password": "Preferowane 6 znaków",
+        "email": "6-100 znaków",
+        "surname": "2-100 znaków",
+        "secondName": "Brak lub 2-50 znaków",
+        "name": "2-50 znaków"
       }
     },
     "infoText": {
@@ -146,6 +154,10 @@
       },
       "details": {
         "pageTitle": "Szczegóły powodu"
+      },
+      "placeholder": {
+        "name": "2-50 znaków",
+        "salaryPercentage": "Od 0.00 do 1.00"
       }
     },
     "infoText": {
@@ -156,7 +168,17 @@
   },
   "error": {
     "uniqueEmail": "Podany adres email jest już używany",
+    "login": "Nieprawidłowy adres email lub hasło",
     "default-form": "Formularz zawiera błędy",
-    "login": "Nieprawidłowy adres email lub hasło"
+    "required_value": "Pole jest wymagane",
+    "dateToBeforeDateFrom": "Data zakończenia nie może być przed datą rozpoczęcia",
+    "dateFormat": "Pole powinno zawierać datę w formacie yyyy-MM-dd",
+    "dateFromPast": "Data nie może być z przeszłości",
+    "2-50signs": "Pole powinno zawierać od 2 do 50 znaków",
+    "2-100signs": "Pole powinno zawierać od 2 do 100 znaków",
+    "6-100signs": "Pole powinno zawierać od 6 do 100 znaków",
+    "email": "Pole powinno zawierać prawidłowy adres email",
+    "number": "Pole powinno być liczbą",
+    "numberBetween0And1": "Pole powinno być liczbą w zakresie 0.00 do 1.00"
   }
 }

@@ -9,7 +9,7 @@
         <input type="hidden" name="IdReason" value="<%= reason.IdReason %>">
 
         <label for="reasonName"><%= __('reason.fields.name') %>: <span class="symbol-required">*</span></label>
-        <input type="text" name="Name" id="Name" placeholder="2-50 znaków"
+        <input type="text" name="Name" id="Name" placeholder="<%= __('reason.form.placeholder.name') %>"
                class="<%= validationErrors.find(e => e.path.includes('Name')) ? 'error-input' : '' %>"
                value="<%= reason.Name %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
@@ -21,7 +21,8 @@
 
         <label for="salaryPercentage"><%= __('reason.fields.salaryPercentage') %>: <span
                     class="symbol-required">*</span></label>
-        <input type="number" name="SalaryPercentage" id="SalaryPercentage" placeholder="Od 0.00 do 1.00"
+        <input type="number" name="SalaryPercentage" id="SalaryPercentage"
+               placeholder="<%= __('reason.form.placeholder.salaryPercentage') %>"
                class="<%= validationErrors.find(e => e.path.includes('SalaryPercentage')) ? 'error-input' : '' %>"
                value="<%= reason.SalaryPercentage %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
@@ -70,7 +71,7 @@
         <div class="form-buttons">
             <p id="errorsSummary" class="errors-text">
                 <% if (validationErrors.length > 0){ %>
-                    Formularz zawiera błędy
+                    <%= __('error.default-form') %>
                 <% } %>
             </p>
             <% if(formMode !== 'showDetails') { %>
@@ -82,6 +83,15 @@
         </div>
 
     </form>
+
+    <div style="display: none">
+        <span id="errorMessage-default-form"><%= __('error.default-form') %></span>
+        <span id="errorMessage-required_value"><%= __('error.required_value') %></span>
+        <span id="errorMessage-required_2-50signs"><%= __('error.2-50signs') %></span>
+        <span id="errorMessage-required_number"><%= __('error.number') %></span>
+        <span id="errorMessage-required_numberBetween0And1"><%= __('error.numberBetween0And1') %></span>
+
+    </div>
 
 
 </main>
