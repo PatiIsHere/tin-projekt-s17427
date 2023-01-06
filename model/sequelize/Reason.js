@@ -47,12 +47,4 @@ const Reason = sequelize.define('Reason', {
         }
     }
 });
-//TODO
-//by unique działał musi być sync -> dopytać się
-//const sequelize = new Sequelize("sqlite::memory:");
-// (async () => {
-//     await sequelize.sync({force: true});
-//     // Code here
-// })();
-
 module.exports = Reason;

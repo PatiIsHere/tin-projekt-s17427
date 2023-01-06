@@ -25,11 +25,11 @@ function validateForm() {
         valid = false;
         salaryPercentageInput.classList.add("error-input");
         errorSalaryPercentage.innerText = "Pole jest wymagane";
-    } else if (!checkNumber(salaryPercentageInput)) {
+    } else if (!checkNumber(salaryPercentageInput.value)) {
         valid = false;
         salaryPercentageInput.classList.add("error-input");
         errorSalaryPercentage.innerText = "Pole powinno być liczbą";
-    } else if (!checkNumberRange(salaryPercentageInput, 0, 100)) {
+    } else if (!checkNumberRange(salaryPercentageInput.value, 0, 100)) {
         valid = false;
         salaryPercentageInput.classList.add("error-input");
         errorSalaryPercentage.innerText = "Pole powinno być liczbą w zakresie 0.00 do 1.00";

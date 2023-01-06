@@ -50,9 +50,9 @@ exports.showEmployeeListAfterAdd = (req, res, next) => {
 exports.showAddEmployeeForm = (req, res, next) => {
     res.render('pages/employee/form', {
         emp: {},
-        pageTitle: 'Nowy pracownik',
+        pageTitle: req.__('employee.form.add.pageTitle'),
+        btnLabel: req.__('employee.form.add.btnLabel'),
         formMode: 'createNew',
-        btnLabel: 'Dodaj pracownika',
         formAction: '/employee/add',
         navLocation: 'emp',
         validationErrors: []
@@ -67,7 +67,7 @@ exports.showEmployeeDetails = (req, res, next) => {
             res.render('pages/employee/form', {
                 emp: emp,
                 formMode: 'showDetails',
-                pageTitle: 'Szczegóły pracownika',
+                pageTitle: req.__('employee.form.details.pageTitle'),
                 formAction: '',
                 navLocation: 'emp',
                 validationErrors: []
@@ -82,8 +82,8 @@ exports.showEmployeeEditForm = (req, res, next) => {
             res.render('pages/employee/form', {
                 emp: emp,
                 formMode: 'edit',
-                pageTitle: 'Edycja pracownika',
-                btnLabel: 'Edytuj pracownika',
+                pageTitle: req.__('employee.form.edit.pageTitle'),
+                btnLabel: req.__('employee.form.edit.btnLabel'),
                 formAction: '/employee/edit',
                 navLocation: 'emp',
                 validationErrors: []
@@ -106,14 +106,14 @@ exports.addEmployee = (req, res, next) => {
         .catch(err => {
             err.errors.forEach(e => {
                 if (e.path.includes('Email') && e.type == 'unique violation') {
-                    e.message = "Podany adres email jest już używany";
+                    e.message = req.__('error.uniqueEmail');
                 }
             });
             res.render('pages/employee/form', {
                 emp: empData,
-                pageTitle: 'Nowy pracownik',
+                pageTitle: req.__('employee.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Dodaj pracownika',
+                btnLabel: req.__('employee.form.add.btnLabel'),
                 formAction: '/employee/add',
                 navLocation: 'emp',
                 validationErrors: err.errors
@@ -139,8 +139,8 @@ exports.updateEmployee = (req, res, next) => {
                     res.render('pages/employee/form', {
                         emp: emp,
                         formMode: 'edit',
-                        pageTitle: 'Edycja pracownika',
-                        btnLabel: 'Edytuj pracownika',
+                        pageTitle: req.__('employee.form.edit.pageTitle'),
+                        btnLabel: req.__('employee.form.edit.btnLabel'),
                         formAction: '/employee/edit',
                         navLocation: 'emp',
                         validationErrors: err.errors

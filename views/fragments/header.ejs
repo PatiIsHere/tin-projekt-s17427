@@ -17,34 +17,35 @@
 </header>
 <nav>
     <ul>
-        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : '' %>">Strona główna</a></li>
-        <li><a href="/absence" class="<%= navLocation == 'absence' ? 'active' : '' %>">Nieobecności</a>
+        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : '' %>"><%= __('nav.main-page') %></a></li>
+        <li><a href="/absence" class="<%= navLocation == 'absence' ? 'active' : '' %>"><%= __('nav.absences') %></a></a>
         </li>
         <li><a href="/employee"
-               class="<%= navLocation == 'emp' ? 'active' : '' %>">Pracownicy</a></li>
+               class="<%= navLocation == 'emp' ? 'active' : '' %>"><%= __('nav.employees') %></a></li>
         <li><a href="/reason"
-               class="<%= navLocation == 'reason' ? 'active' : '' %>">Powody</a></li>
+               class="<%= navLocation == 'reason' ? 'active' : '' %>"><%= __('nav.reasons') %></a></li>
         <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : '' %>">PL</a></li>
         <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : '' %>">EN</a></li>
+        <% if(!loggedUser) { %>
+            <div id="login">
+                <!--                <h5> Logowanie </h5>-->
+                <form method="post" action="/login" novalidate>
+                    <label for="loginEmail"><%= __('login.email') %>:</label>
+                    <input type="Email" id="loginEmail" name="Email">
+
+                    <label for="loginPassword"><%= __('login.password') %>:</label>
+                    <input type="Password" id="loginPassword" name="Password">
+
+                    <input type="submit" value=<%= __('login.btnLogInLabel') %>>
+                    <span id="loginErrors"><%= loginError ? loginError : '' %></span>
+                </form>
+            </div>
+        <% }else { %>
+            <span><%= __('login.welcomeInfo') %>: <%= loggedUser.Name + " " + loggedUser.Surname %></span>
+            <a href="/logout"><%= __('login.btnLogOutLabel') %></a>
+        <% } %>
     </ul>
 </nav>
 
-<% if(!loggedUser) { %>
-    <div id="login">
-        <h5> Logowanie </h5>
-        <form method="post" action="/login" novalidate>
-            <label for="loginEmail">Email:</label>
-            <input type="Email" id="loginEmail" name="Email">
 
-            <label for="loginPassword">Hasło:</label>
-            <input type="Password" id="loginPassword" name="Password">
-
-            <input type="submit" value="Zaloguj się">
-            <span id="loginErrors"><%= loginError ? loginError : '' %></span>
-        </form>
-    </div>
-<% }else { %>
-    <span>Jesteś zalogowany jako: <%= loggedUser.Name + " " + loggedUser.Surname %></span>
-    <a href="/logout">Wyloguj się</a>
-<% } %>
 

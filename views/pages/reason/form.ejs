@@ -8,7 +8,7 @@
     <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
         <input type="hidden" name="IdReason" value="<%= reason.IdReason %>">
 
-        <label for="reasonName">Typ nieobecności: <span class="symbol-required">*</span></label>
+        <label for="reasonName"><%= __('reason.fields.name') %>: <span class="symbol-required">*</span></label>
         <input type="text" name="Name" id="Name" placeholder="2-50 znaków"
                class="<%= validationErrors.find(e => e.path.includes('Name')) ? 'error-input' : '' %>"
                value="<%= reason.Name %>"
@@ -19,7 +19,8 @@
             <% } %>
         </span>
 
-        <label for="salaryPercentage">% Wynagrodzenia: <span class="symbol-required">*</span></label>
+        <label for="salaryPercentage"><%= __('reason.fields.salaryPercentage') %>: <span
+                    class="symbol-required">*</span></label>
         <input type="number" name="SalaryPercentage" id="SalaryPercentage" placeholder="Od 0.00 do 1.00"
                class="<%= validationErrors.find(e => e.path.includes('SalaryPercentage')) ? 'error-input' : '' %>"
                value="<%= reason.SalaryPercentage %>"
@@ -32,21 +33,22 @@
 
         <% if (formMode == 'showDetails') { %>
             <div class="section-buttons">
-                <a href="/reason/edit/<%= reason.IdReason %>" class="action-button-gotoEdit">Edytuj</a>
+                <a href="/reason/edit/<%= reason.IdReason %>"
+                   class="action-button-gotoEdit"><%= __('form.actions.edit') %></a>
             </div>
         <% } %>
 
         <% if (formMode == 'showDetails' || formMode == 'edit') { %>
-            <h2>Nieobecności</h2>
+            <h2><%= __('absence.list.title') %></h2>
 
             <table class="table-list">
                 <thead>
 
                 <tr>
-                    <th>Pracownik</th>
-                    <th class="non-essential-row">Data OD</th>
-                    <th>Data DO</th>
-                    <th>Akceptacja</th>
+                    <th><%= __('employee.title') %></th>
+                    <th class="non-essential-row"><%= __('absence.fields.dateFrom') %></th>
+                    <th><%= __('absence.fields.dateTo') %></th>
+                    <th><%= __('absence.fields.isAccepted') %></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -57,7 +59,7 @@
                                 + e.employee.Surname %></a></td>
                         <td class="non-essential-row"><%= e.DateFrom.toISOString().split('T')[0] %></td>
                         <td><%= e.DateTo.toISOString().split('T')[0] %></td>
-                        <td class="non-essential-row"><%= e.IsAccepted === true ? 'Tak' : 'Nie' %></td>
+                        <td class="non-essential-row"><%= e.IsAccepted === true ? __('absence.acceptanceMap.yes') : __('absence.acceptanceMap.no') %></td>
                     </tr>
                 <% } %>
 
@@ -73,9 +75,9 @@
             </p>
             <% if(formMode !== 'showDetails') { %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
-                <a class="form-button-cancel" href="/reason">Anuluj</a>
+                <a class="form-button-cancel" href="/reason"><%= __('form.actions.cancel') %></a>
             <% } else { %>
-                <a class="form-button-cancel" href="/reason">Powrót</a>
+                <a class="form-button-cancel" href="/reason"><%= __('form.actions.return') %></a>
             <% } %>
         </div>
 

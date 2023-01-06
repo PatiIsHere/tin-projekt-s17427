@@ -57,6 +57,7 @@ function checkNumberRange(value, min, max) {
     if (!value) {
         return false;
     }
+    console.log(value)
     const num = parseFloat(value);
     if (isNaN(num)) {
         return false;

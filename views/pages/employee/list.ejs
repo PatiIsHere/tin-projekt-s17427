@@ -2,30 +2,27 @@
 
 <% if (listMode == 'showInfo') { %>
     <div id="delete-info" class="<%= infoType === 'deleted' ? 'info-activated' : 'info-disabled' %>"><img
-                src="/images/deleteICON.png" alt="Delete icon" width="25px">Pracownik usuniety
-        pomyślnie
+                src="/images/deleteICON.png" alt="Delete icon" width="25px"><%= __('employee.infoText.deleted') %>
     </div>
     <div id="update-info" class="<%= infoType == 'updated' ? 'info-activated' : 'info-disabled' %>"><img
-                src="/images/updateICON.png" alt="Update icon" width="25px">Pracownik
-        zaktualizowany pomyślnie
+                src="/images/updateICON.png" alt="Update icon" width="25px"><%= __('employee.infoText.updated') %>
     </div>
     <div id="insert-info" class="<%= infoType == 'added' ? 'info-activated' : 'info-disabled' %>"><img
-                src="/images/addICON.png" alt="Add icon" width="25px">Pracownik dodany
-        pomyślnie
+                src="/images/addICON.png" alt="Add icon" width="25px"><%= __('employee.infoText.added') %>
     </div>
 <% } %>
 
 <main>
-    <h2>Lista pracowników</h2>
+    <h2><%= __('employee.list.title') %></h2>
     <table class="table-list">
         <thead>
 
         <tr>
-            <th>Imię</th>
-            <th>Drugie imię</th>
-            <th>Nazwisko</th>
-            <th class="non-essential-row">Email</th>
-            <th>Akcje</th>
+            <th><%= __('employee.fields.name') %></th>
+            <th><%= __('employee.fields.secondName') %></th>
+            <th><%= __('employee.fields.surname') %></th>
+            <th class="non-essential-row"><%= __('employee.fields.email') %></th>
+            <th><%= __('list.actions.title') %></th>
         </tr>
         </thead>
         <tbody>
@@ -38,9 +35,12 @@
                 <td>
                     <ul class="list-actions">
                         <li>
-                            <a href="/employee/details/<%= emp.IdEmployee %>" class="list-actions-button-details">Szczegóły</a>
-                            <a href="/employee/edit/<%= emp.IdEmployee %>" class="list-actions-button-edit">Edytuj</a>
-                            <a href="/employee/delete/<%= emp.IdEmployee %>" class="list-actions-button-delete">Usuń</a>
+                            <a href="/employee/details/<%= emp.IdEmployee %>"
+                               class="list-actions-button-details"><%= __('list.actions.details') %></a>
+                            <a href="/employee/edit/<%= emp.IdEmployee %>"
+                               class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
+                            <a href="/employee/delete/<%= emp.IdEmployee %>"
+                               class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
                         </li>
                     </ul>
                 </td>
@@ -48,7 +48,7 @@
         <% } %>
         </tbody>
     </table>
-    <p><a href="/employee/add" class="button-add">Dodaj nowego pracownika</a></p>
+    <p><a href="/employee/add" class="button-add"><%= __('employee.list.addNew') %></a></p>
 </main>
 
 <%- include('../../fragments/footer.ejs') %>

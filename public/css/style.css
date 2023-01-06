@@ -266,6 +266,7 @@ textarea {
 
 .form select,
 .form input[type="text"],
+.form input[type="password"],
 .form input[type="number"],
 .form input[type="date"],
 .form input[type="radio"] {
@@ -539,6 +540,7 @@ textarea {
 
     .form select,
     .form input[type="text"],
+    .form input[type="password"],
     .form input[type="number"],
     .form input[type="date"],
     .form input[type="radio"] {

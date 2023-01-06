@@ -66,7 +66,12 @@ const Employee = sequelize.define('Employee', {
     },
     Password: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Pole jest wymagane"
+            }
+        }
     }
 })
 

@@ -1,11 +1,12 @@
 <%- include('../../fragments/header.ejs') %>
 
 <main>
-    <script type="application/javascript" src="/js/validationEmpForm.js"></script>
-    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <!--    <script type="application/javascript" src="/js/validationEmpForm.js"></script>-->
+    <!--    <script type="application/javascript" src="/js/validationCommon.js"></script>-->
     <h2><%= pageTitle %></h2>
 
-    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+    <form class="form" method="post" action="<%= formAction %>" novalidate
+          onsubmit="return <%= (formMode === 'edit') ? 'validateForm(false)' : 'validateForm(true)' %>">
         <input type="hidden" name="IdEmployee" value="<%= emp.IdEmployee %>">
 
         <label for="firstName"><%= __('employee.fields.name') %>: <span class="symbol-required">*</span></label>
@@ -52,36 +53,38 @@
             <% } %>
         </span>
 
-        <% if(formMode == 'createNew' || formMode == 'edit') { %>
+        <% if(formMode == 'createNew' ) { %>
             <label for="password"><%= __('employee.fields.password') %>: <span class="symbol-required">*</span></label>
-            <input type="text" name="Password" id="Password" placeholder="preferowane 6 znaków"
+            <input type="password" name="Password" id="Password" placeholder="preferowane 6 znaków"
                    class="<%= validationErrors.find(e => e.path.includes('Password')) ? 'error-input' : '' %>"
+
                     <%= (formMode == 'showDetails') ? 'disabled' : '' %> required/>
-            <span id="errorEmail" class="errors-text">
-                <% if (validationErrors.find(e => e.path.includes('Email'))){ %>
-                    <%= (validationErrors.find(e => e.path.includes('Email'))).message %>
+            <span id="errorPassword" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('Password'))){ %>
+                    <%= (validationErrors.find(e => e.path.includes('Password'))).message %>
                 <% } %>
             </span>
         <% } %>
 
         <% if (formMode == 'showDetails') { %>
             <div class="section-buttons">
-                <a href="/employee/edit/<%= emp.IdEmployee %>" class="action-button-gotoEdit">Edytuj</a>
+                <a href="/employee/edit/<%= emp.IdEmployee %>"
+                   class="action-button-gotoEdit"><%= __('form.actions.edit') %></a>
             </div>
         <% } %>
 
         <% if (formMode == 'showDetails' || formMode == 'edit') { %>
-            <h2>Nieobecności</h2>
+            <h2><%= __('absence.list.title') %></h2>
 
             <table class="table-list">
                 <thead>
 
                 <tr>
-                    <th>Typ nieobecności</th>
-                    <th class="non-essential-row">Data OD</th>
-                    <th>Data DO</th>
-                    <th class="non-essential-row">Akceptacja</th>
-                    <th>% Wynagrodzenia</th>
+                    <th><%= __('reason.fields.name') %></th>
+                    <th class="non-essential-row"><%= __('absence.fields.dateFrom') %></th>
+                    <th><%= __('absence.fields.dateTo') %></th>
+                    <th class="non-essential-row"><%= __('absence.fields.isAccepted') %></th>
+                    <th><%= __('reason.fields.salaryPercentage') %></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -90,7 +93,7 @@
                         <td><a href="/reason/details/<%= e.reason.IdReason %>"><%= e.reason.Name %></a></td>
                         <td class="non-essential-row"><%= e.DateFrom.toLocaleDateString('pl-PL') %></td>
                         <td><%= e.DateTo.toLocaleDateString('pl-PL') %></td>
-                        <td class="non-essential-row"><%= e.IsAccepted === true ? 'Tak' : 'Nie' %></td>
+                        <td class="non-essential-row"><%= e.IsAccepted === true ? __('absence.acceptanceMap.yes') : __('absence.acceptanceMap.no') %></td>
                         <td><%= e.reason.SalaryPercentage %></td>
                     </tr>
                 <% } %>
@@ -102,14 +105,14 @@
         <div class="form-buttons">
             <p id="errorsSummary" class="errors-text">
                 <% if (validationErrors.length > 0){ %>
-                    Formularz zawiera błędy
+                    <%= __('error.default-form') %>
                 <% } %>
             </p>
             <% if(formMode !== 'showDetails') { %>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
-                <a class="form-button-cancel" href="/employee">Anuluj</a>
+                <a class="form-button-cancel" href="/employee"><%= __('form.actions.cancel') %></a>
             <% } else { %>
-                <a class="form-button-cancel" href="/employee">Powrót</a>
+                <a class="form-button-cancel" href="/employee"><%= __('form.actions.return') %></a>
             <% } %>
         </div>
     </form>

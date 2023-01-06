@@ -1,17 +1,19 @@
-function validateForm() {
+function validateForm(isPasswordValidated) {
 
     const firstNameInput = document.getElementById('Name');
     const secondNameInput = document.getElementById('SecondName');
     const lastNameInput = document.getElementById('Surname');
     const emailInput = document.getElementById('Email');
+    const passwordInput = document.getElementById('Password');
 
     const errorFirstName = document.getElementById('errorFirstName');
     const errorSecondName = document.getElementById('errorSecondName');
     const errorLastName = document.getElementById('errorLastName');
     const errorEmail = document.getElementById('errorEmail');
+    const errorPassword = document.getElementById('errorPassword');
     const errorSummary = document.getElementById('errorsSummary');
 
-    resetErrors([firstNameInput, secondNameInput, lastNameInput, emailInput], [errorFirstName, errorSecondName, errorLastName, errorEmail], errorSummary);
+    resetErrors([firstNameInput, secondNameInput, lastNameInput, emailInput, passwordInput], [errorFirstName, errorSecondName, errorLastName, errorEmail, errorPassword], errorSummary);
 
     let valid = true;
 
@@ -49,6 +51,13 @@ function validateForm() {
         valid = false;
         emailInput.classList.add("error-input");
         errorEmail.innerText = "Pole powinno zawierać od 6 do 100 znaków";
+    }
+    if (isPasswordValidated) {
+        if (!checkRequired(passwordInput.value)) {
+            valid = false;
+            passwordInput.classList.add("error-input");
+            errorPassword.innerText = "Pole jest wymagane";
+        }
     }
 
     if (!valid) {

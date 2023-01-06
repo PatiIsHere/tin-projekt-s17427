@@ -60,11 +60,11 @@ exports.showAddAbsenceForm = (req, res, next) => {
             allReasons = reasons;
             res.render('pages/absence/form', {
                 absence: {},
-                pageTitle: 'Nowa nieobecność',
+                pageTitle: req.__('absence.form.add.pageTitle'),
                 formMode: 'createNew',
                 allEmps: allEmps,
                 allReasons: allReasons,
-                btnLabel: 'Dodaj nieobecność',
+                btnLabel: req.__('absence.form.add.btnLabel'),
                 formAction: '/absence/add',
                 navLocation: 'absence',
                 validationErrors: []
@@ -87,7 +87,7 @@ exports.showAbsenceDetails = (req, res, next) => {
                     res.render('pages/absence/form', {
                         absence: absence,
                         formMode: 'showDetails',
-                        pageTitle: 'Szczegóły nieobecności',
+                        pageTitle: req.__('absence.form.details.pageTitle'),
                         allEmps: allEmps,
                         allReasons: allReasons,
                         possibleIsAcceptedValues: AbsenceRepository.getPossibleAcceptance(),
@@ -114,10 +114,10 @@ exports.showAbsenceEditForm = (req, res, next) => {
                     res.render('pages/absence/form', {
                         absence: absence,
                         formMode: 'edit',
-                        pageTitle: 'Edycja nieobecności',
+                        pageTitle: req.__('absence.form.edit.pageTitle'),
                         allEmps: allEmps,
                         allReasons: allReasons,
-                        btnLabel: 'Edytuj nieobecność',
+                        btnLabel: req.__('absence.form.edit.btnLabel'),
                         formAction: '/absence/edit',
                         navLocation: 'absence',
                         validationErrors: []
@@ -146,11 +146,11 @@ exports.addAbsence = (req, res, next) => {
                     allReasons = reasons;
                     res.render('pages/absence/form', {
                         absence: absenceData,
-                        pageTitle: 'Nowa nieobecność',
+                        pageTitle: req.__('absence.form.add.pageTitle'),
                         formMode: 'createNew',
                         allEmps: allEmps,
                         allReasons: allReasons,
-                        btnLabel: 'Dodaj nieobecność',
+                        btnLabel: req.__('absence.form.add.btnLabel'),
                         formAction: '/absence/add',
                         navLocation: 'absence',
                         validationErrors: err.errors
