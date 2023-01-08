@@ -468,6 +468,7 @@ textarea {
         display: block;
     }
 
+
     .form {
         grid-template-columns: 1fr;
         row-gap: unset;

@@ -48,6 +48,11 @@ app.use((req, res, next) => {
     next();
 });
 
+var cors = require('cors');
+app.use(cors({
+    origin: '*'
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 const session = require('express-session');
@@ -74,8 +79,9 @@ const absenceRouter = require('./routes/absenceRouter');
 const empApiRouter = require('./routes/api/EmployeeApiRoute');
 const reasonApiRouter = require('./routes/api/ReasonApiRoute');
 const absenceApiRouter = require('./routes/api/AbsenceApiRoute');
-
+const authApiRouter = require('./routes/api/AuthApiRoute')
 app.use('/', indexRouter);
+
 app.use('/employee', authUtil.permitAuthenticatedUser, employeeRouter);
 app.use('/reason', reasonRouter);
 app.use('/absence', absenceRouter);
@@ -84,6 +90,7 @@ app.use('/absence', absenceRouter);
 app.use('/api/employee', empApiRouter);
 app.use('/api/reason', reasonApiRouter);
 app.use('/api/absence', absenceApiRouter);
+app.use('/api/auth', authApiRouter)
 
 
 // catch 404 and forward to error handler
