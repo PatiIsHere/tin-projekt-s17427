@@ -35,12 +35,16 @@
                 <td>
                     <ul class="list-actions">
                         <li>
-                            <a href="/employee/details/<%= emp.IdEmployee %>"
-                               class="list-actions-button-details"><%= __('list.actions.details') %></a>
-                            <a href="/employee/edit/<%= emp.IdEmployee %>"
-                               class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
-                            <a href="/employee/delete/<%= emp.IdEmployee %>"
-                               class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
+                            <% if(loggedUser.IsAdmin || loggedUser.IdEmployee == emp.IdEmployee){ %>
+                                <a href="/employee/details/<%= emp.IdEmployee %>"
+                                   class="list-actions-button-details"><%= __('list.actions.details') %></a>
+                                <a href="/employee/edit/<%= emp.IdEmployee %>"
+                                   class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
+                            <% } %>
+                            <% if(loggedUser.IsAdmin){ %>
+                                <a href="/employee/delete/<%= emp.IdEmployee %>"
+                                   class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
+                            <% } %>
                         </li>
                     </ul>
                 </td>
@@ -48,7 +52,9 @@
         <% } %>
         </tbody>
     </table>
-    <p><a href="/employee/add" class="button-add"><%= __('employee.list.addNew') %></a></p>
+    <% if(loggedUser.IsAdmin){ %>
+        <p><a href="/employee/add" class="button-add"><%= __('employee.list.addNew') %></a></p>
+    <% } %>
 </main>
 
 <%- include('../../fragments/footer.ejs') %>

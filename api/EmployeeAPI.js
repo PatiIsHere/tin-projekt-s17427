@@ -1,5 +1,6 @@
 const EmployeeRepository = require('../repository/sequelize/EmployeeRepository')
 
+
 exports.getEmployees = (req, res, next) => {
     EmployeeRepository.getEmployees()
         .then(emps => {

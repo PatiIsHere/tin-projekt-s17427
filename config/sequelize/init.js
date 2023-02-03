@@ -39,7 +39,8 @@ module.exports = () => {
                         SecondName: 'Andrzej',
                         Surname: 'Kowalski',
                         Email: 'akowalski@absence.com',
-                        Password: authUtil.hashPassword('123456')
+                        Password: authUtil.hashPassword('123456'),
+                        IsAdmin: true
                     },
                     {
                         Name: 'Andrzej',

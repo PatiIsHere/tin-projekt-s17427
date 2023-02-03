@@ -17,13 +17,17 @@
 </header>
 <nav>
     <ul>
+
         <li><a href="/" class="<%= navLocation == 'main' ? 'active' : '' %>"><%= __('nav.main-page') %></a></li>
-        <li><a href="/absence" class="<%= navLocation == 'absence' ? 'active' : '' %>"><%= __('nav.absences') %></a></a>
-        </li>
-        <li><a href="/employee"
-               class="<%= navLocation == 'emp' ? 'active' : '' %>"><%= __('nav.employees') %></a></li>
-        <li><a href="/reason"
-               class="<%= navLocation == 'reason' ? 'active' : '' %>"><%= __('nav.reasons') %></a></li>
+        <% if(loggedUser) { %>
+            <li><a href="/absence"
+                   class="<%= navLocation == 'absence' ? 'active' : '' %>"><%= __('nav.absences') %></a></a>
+            </li>
+            <li><a href="/employee"
+                   class="<%= navLocation == 'emp' ? 'active' : '' %>"><%= __('nav.employees') %></a></li>
+            <li><a href="/reason"
+                   class="<%= navLocation == 'reason' ? 'active' : '' %>"><%= __('nav.reasons') %></a></li>
+        <% } %>
         <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : '' %>">PL</a></li>
         <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : '' %>">EN</a></li>
         <% if(!loggedUser) { %>
@@ -44,7 +48,7 @@
             </li>
         <% }else { %>
             <li>
-                <span><%= __('login.welcomeInfo') %>: <%= loggedUser.Name + " " + loggedUser.Surname %></span>
+                <span><%= __('login.welcomeInfo') %>: <%= loggedUser.Name + " " + loggedUser.Surname + " ID: " + loggedUser.IdEmployee + " Admin?: " + loggedUser.IsAdmin %></span>
                 <a href="/logout"><%= __('login.btnLogOutLabel') %></a>
             </li>
         <% } %>

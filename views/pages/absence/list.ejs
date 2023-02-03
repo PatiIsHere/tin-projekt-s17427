@@ -29,29 +29,32 @@
         </thead>
         <tbody>
         <% for (let absence of absences) { %>
-            <tr>
-                <td><%= absence.reason.Name %></td>
-                <td class="non-essential-row"><%= absence.DateFrom.toLocaleDateString('pl-PL') %></td>
-                <td><%= absence.DateTo.toLocaleDateString('pl-PL') %></td>
-                <td class="non-essential-row"><%= absence.employee.Name %></td>
-                <td><%= absence.employee.Surname %></td>
-                <td class="non-essential-row"><%= absence.IsAccepted === true ? __('absence.acceptanceMap.yes') : __('absence.acceptanceMap.no') %></td>
-                <td>
-                    <ul class="list-actions">
-                        <li>
-                            <a href="/absence/details/<%= absence.IdAbsence %>"
-                               class="list-actions-button-details"><%= __('list.actions.details') %></a>
-                            <a href="/absence/edit/<%= absence.IdAbsence %>"
-                               class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
-                            <a href="/absence/delete/<%= absence.IdAbsence %>"
-                               class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+            <% if(loggedUser.IsAdmin || loggedUser.IdEmployee === absence.IdEmployee){ %>
+                <tr>
+                    <td><%= absence.reason.Name %></td>
+                    <td class="non-essential-row"><%= absence.DateFrom.toLocaleDateString('pl-PL') %></td>
+                    <td><%= absence.DateTo.toLocaleDateString('pl-PL') %></td>
+                    <td class="non-essential-row"><%= absence.employee.Name %></td>
+                    <td><%= absence.employee.Surname %></td>
+                    <td class="non-essential-row"><%= absence.IsAccepted === true ? __('absence.acceptanceMap.yes') : __('absence.acceptanceMap.no') %></td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="/absence/details/<%= absence.IdAbsence %>"
+                                   class="list-actions-button-details"><%= __('list.actions.details') %></a>
+                                <a href="/absence/edit/<%= absence.IdAbsence %>"
+                                   class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
+                                <a href="/absence/delete/<%= absence.IdAbsence %>"
+                                   class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            <% } %>
         <% } %>
         </tbody>
     </table>
+
     <p><a href="/absence/add" class="button-add"><%= __('absence.list.addNew') %></a></p>
 </main>
 

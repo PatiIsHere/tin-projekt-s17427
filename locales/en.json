@@ -160,5 +160,15 @@
     "email": "Field should contain correct email address",
     "number": "Field should be number",
     "numberBetween0And1": "Field should be number between 0.00 and 1.00"
+  },
+  "server-error": {
+    "notEmpty": "Value required",
+    "len_2_50": "Field should contain between 2 and 50 signs",
+    "len_2_100": "Field should contain between 2 and 100 signs",
+    "len_6_100": "Field should contain between 6 and 100 signs",
+    "isEmail": "Field should contain correct email address",
+    "dateToBeforeToday": "Date cannot be from the past",
+    "dateFromBeforeToday": "Date from cannot be before date to",
+    "between_0_1": "Field should be number between 0.00 and 1.00"
   }
 }

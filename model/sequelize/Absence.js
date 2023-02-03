@@ -13,7 +13,7 @@ const Absence = sequelize.define('Absence', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "notEmpty"
             }
         }
     },
@@ -22,7 +22,7 @@ const Absence = sequelize.define('Absence', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "notEmpty"
             }
         }
     },
@@ -31,11 +31,11 @@ const Absence = sequelize.define('Absence', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "notEmpty"
             },
             //isDate: true,
             isNotFromPast(value) {
-                //validate only for new records
+                console.log(value)
                 if (this.IdAbsence === null) {
                     const today = new Date();
                     const year = today.getFullYear();
@@ -44,9 +44,11 @@ const Absence = sequelize.define('Absence', {
                     const mergeDate = new Date(year, month, day);
 
                     if (value < mergeDate) {
-                        throw new Error('`Data od` nie może być z przeszłości');
+                        throw new Error('dateFromBeforeToday');
                     }
+                    return true
                 }
+
             }
         }
     },
@@ -55,12 +57,12 @@ const Absence = sequelize.define('Absence', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "notEmpty"
             },
             //isDate: true,
             isAfterDateFrom(value) {
                 if (value < this.DateFrom) {
-                    throw new Error('`Data do` nie może być wcześniej niż data od');
+                    throw new Error('dateToBeforeDateFrom');
                 }
                 return true
             }
@@ -71,7 +73,7 @@ const Absence = sequelize.define('Absence', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "notEmpty"
             }
         }
     }

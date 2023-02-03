@@ -170,6 +170,7 @@ exports.updateAbsence = (req, res, next) => {
 
 exports.deleteAbsence = (req, res, next) => {
     const absenceId = req.params.IdAbsence;
+    
     AbsenceRepository.deleteAbsence(absenceId)
         .then(result => {
             res.redirect('/absence/deleted');

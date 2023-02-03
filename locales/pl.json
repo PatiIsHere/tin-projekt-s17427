@@ -180,5 +180,15 @@
     "email": "Pole powinno zawierać prawidłowy adres email",
     "number": "Pole powinno być liczbą",
     "numberBetween0And1": "Pole powinno być liczbą w zakresie 0.00 do 1.00"
+  },
+  "server-error": {
+    "notEmpty": "Pole jest wymagane",
+    "len_2_50": "Pole powinno zawierać od 2 do 50 znaków",
+    "len_2_100": "Pole powinno zawierać od 2 do 100 znaków",
+    "isEmail": "Pole powinno zawierać prawidłowy adres email",
+    "len_6_100": "Pole powinno zawierać od 6 do 100 znaków",
+    "dateFromBeforeToday": "Data nie może być z przeszłości",
+    "dateToBeforeDateFrom": "Data zakończenia nie może być przed datą rozpoczęcia",
+    "between_0_1": "Pole powinno być liczbą w zakresie 0.00 do 1.00"
   }
 }

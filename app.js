@@ -83,8 +83,8 @@ const authApiRouter = require('./routes/api/AuthApiRoute')
 app.use('/', indexRouter);
 
 app.use('/employee', authUtil.permitAuthenticatedUser, employeeRouter);
-app.use('/reason', reasonRouter);
-app.use('/absence', absenceRouter);
+app.use('/reason', authUtil.permitAuthenticatedUser, reasonRouter);
+app.use('/absence', authUtil.permitAuthenticatedUser, absenceRouter);
 
 
 app.use('/api/employee', empApiRouter);
