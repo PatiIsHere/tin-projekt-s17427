@@ -50,9 +50,9 @@ exports.showReasonListAfterAdd = (req, res, next) => {
 exports.showAddReasonForm = (req, res, next) => {
     res.render('pages/reason/form', {
         reason: {},
-        pageTitle: 'Nowy powód',
+        pageTitle: req.__('reason.form.add.pageTitle'),
         formMode: 'createNew',
-        btnLabel: 'Dodaj powód',
+        btnLabel: req.__('reason.form.add.btnLabel'),
         formAction: '/reason/add',
         navLocation: 'reason',
         validationErrors: []
@@ -67,7 +67,7 @@ exports.showReasonDetails = (req, res, next) => {
             res.render('pages/reason/form', {
                 reason: reason,
                 formMode: 'showDetails',
-                pageTitle: 'Szczegóły powodu',
+                pageTitle: req.__('reason.form.details.pageTitle'),
                 formAction: '',
                 navLocation: 'reason',
                 validationErrors: []
@@ -82,8 +82,8 @@ exports.showReasonEditForm = (req, res, next) => {
             res.render('pages/reason/form', {
                 reason: reason,
                 formMode: 'edit',
-                pageTitle: 'Edycja powodu',
-                btnLabel: 'Edytuj powód',
+                pageTitle: req.__('reason.form.edit.pageTitle'),
+                btnLabel: req.__('reason.form.edit.btnLabel'),
                 formAction: '/reason/edit',
                 navLocation: 'reason',
                 validationErrors: []
@@ -102,9 +102,9 @@ exports.addReason = (req, res, next) => {
         .catch(err => {
             res.render('pages/reason/form', {
                 reason: reasonData,
-                pageTitle: 'Nowy powód',
+                pageTitle: req.__('reason.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Dodaj powód',
+                btnLabel: req.__('reason.form.add.btnLabel'),
                 formAction: '/reason/add',
                 navLocation: 'reason',
                 validationErrors: err.errors

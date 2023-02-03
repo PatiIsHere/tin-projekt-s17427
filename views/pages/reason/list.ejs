@@ -2,28 +2,25 @@
 
 <% if (listMode == 'showInfo') { %>
     <div id="delete-info" class="<%= infoType === 'deleted' ? 'info-activated' : 'info-disabled' %>"><img
-                src="/images/deleteICON.png" alt="Delete icon" width="25px">Powód usuniety
-        pomyślnie
+                src="/images/deleteICON.png" alt="Delete icon" width="25px"><%= __('reason.infoText.deleted') %>
     </div>
     <div id="update-info" class="<%= infoType == 'updated' ? 'info-activated' : 'info-disabled' %>"><img
-                src="/images/updateICON.png" alt="Update icon" width="25px">Powód
-        zaktualizowany pomyślnie
+                src="/images/updateICON.png" alt="Update icon" width="25px"><%= __('reason.infoText.updated') %>
     </div>
     <div id="insert-info" class="<%= infoType == 'added' ? 'info-activated' : 'info-disabled' %>"><img
-                src="/images/addICON.png" alt="Add icon" width="25px">Powód dodany
-        pomyślnie
+                src="/images/addICON.png" alt="Add icon" width="25px"><%= __('reason.infoText.added') %>
     </div>
 <% } %>
 
 <main>
-    <h2>Lista powodów</h2>
+    <h2><%= __('reason.list.title') %></h2>
     <table class="table-list">
         <thead>
 
         <tr>
-            <th>Typ nieobecności</th>
-            <th>% Wynagrodzenia</th>
-            <th>Akcje</th>
+            <th><%= __('reason.fields.name') %></th>
+            <th><%= __('reason.fields.salaryPercentage') %></th>
+            <th><%= __('list.actions.title') %></th>
         </tr>
         </thead>
         <tbody>
@@ -34,9 +31,14 @@
                 <td>
                     <ul class="list-actions">
                         <li>
-                            <a href="/reason/details/<%= reason.IdReason %>" class="list-actions-button-details">Szczegóły</a>
-                            <a href="/reason/edit/<%= reason.IdReason %>" class="list-actions-button-edit">Edytuj</a>
-                            <a href="/reason/delete/<%= reason.IdReason %>" class="list-actions-button-delete">Usuń</a>
+                            <% if(loggedUser.IsAdmin){ %>
+                                <a href="/reason/details/<%= reason.IdReason %>"
+                                   class="list-actions-button-details"><%= __('list.actions.details') %></a>
+                                <a href="/reason/edit/<%= reason.IdReason %>"
+                                   class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
+                                <a href="/reason/delete/<%= reason.IdReason %>"
+                                   class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
+                            <% } %>
                         </li>
                     </ul>
                 </td>
@@ -44,7 +46,10 @@
         <% } %>
         </tbody>
     </table>
-    <p><a href="/reason/add" class="button-add">Dodaj nowy powód</a></p>
+    <% if(loggedUser.IsAdmin){ %>
+        <p><a href="/reason/add" class="button-add"><%= __('reason.list.addNew') %></a>
+        </p>
+    <% } %>
 </main>
 
 <%- include('../../fragments/footer.ejs') %>

@@ -5,6 +5,8 @@ const Reason = require('../../model/sequelize/Reason');
 const Absence = require('../../model/sequelize/Absence');
 const {Sequelize} = require("sequelize");
 
+const authUtil = require('../../util/authUtils')
+
 module.exports = () => {
     Employee.hasMany(Absence, {
         as: 'absences',
@@ -32,11 +34,42 @@ module.exports = () => {
             //TODO tutaj dwa == czy trzy ===?
             if (!emps || emps.length === 0) {
                 return Employee.bulkCreate([
-                    {Name: 'Jan', SecondName: 'Andrzej', Surname: 'Kowalski'},
-                    {Name: 'Andrzej', SecondName: 'Jan', Surname: 'Niekowalski'},
-                    {Name: 'Michał', SecondName: null, Surname: 'Testowy'},
-                    {Name: 'Kazimierz', SecondName: null, Surname: 'Tetmajer'},
-                    {Name: 'Janina', SecondName: 'Anna', Surname: 'Bąk'}
+                    {
+                        Name: 'Jan',
+                        SecondName: 'Andrzej',
+                        Surname: 'Kowalski',
+                        Email: 'akowalski@absence.com',
+                        Password: authUtil.hashPassword('123456'),
+                        IsAdmin: true
+                    },
+                    {
+                        Name: 'Andrzej',
+                        SecondName: 'Jan',
+                        Surname: 'Niekowalski',
+                        Email: 'jniekowalski@absence.com',
+                        Password: authUtil.hashPassword('234567')
+                    },
+                    {
+                        Name: 'Michał',
+                        SecondName: null,
+                        Surname: 'Testowy',
+                        Email: 'mtestowy@absence.com',
+                        Password: authUtil.hashPassword('345678')
+                    },
+                    {
+                        Name: 'Kazimierz',
+                        SecondName: null,
+                        Surname: 'Tetmajer',
+                        Email: 'ktetmajer@absence.com',
+                        Password: authUtil.hashPassword('456789')
+                    },
+                    {
+                        Name: 'Janina',
+                        SecondName: 'Anna',
+                        Surname: 'Bąk',
+                        Email: 'jbak@absence.com',
+                        Password: authUtil.hashPassword('567890')
+                    }
                 ])
                     .then(() => {
                         return Employee.findAll();

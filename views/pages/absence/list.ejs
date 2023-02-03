@@ -2,58 +2,60 @@
 
 <% if (listMode == 'showInfo') { %>
     <div id="delete-info" class="<%= infoType === 'deleted' ? 'info-activated' : 'info-disabled' %>"><img
-                src="/images/deleteICON.png" alt="Delete icon" width="25px">Nieobecność usunieta
-        pomyślnie
+                src="/images/deleteICON.png" alt="Delete icon" width="25px"><%= __('absence.infoText.deleted') %>
     </div>
     <div id="update-info" class="<%= infoType == 'updated' ? 'info-activated' : 'info-disabled' %>"><img
-                src="/images/updateICON.png" alt="Update icon" width="25px">Nieobecność
-        zaktualizowana pomyślnie
+                src="/images/updateICON.png" alt="Update icon" width="25px"><%= __('absence.infoText.updated') %>
     </div>
     <div id="insert-info" class="<%= infoType == 'added' ? 'info-activated' : 'info-disabled' %>"><img
-                src="/images/addICON.png" alt="Add icon" width="25px">Nieobecność dodana
-        pomyślnie
+                src="/images/addICON.png" alt="Add icon" width="25px"><%= __('absence.infoText.added') %>
     </div>
 <% } %>
 
 <main>
-    <h2>Lista nieobecności</h2>
+    <h2><%= __('absence.list.title') %></h2>
     <table class="table-list">
         <thead>
 
         <tr>
-            <th>Typ nieobecności</th>
-            <th class="non-essential-row">Data OD</th>
-            <th>Data DO</th>
-            <th class="non-essential-row">Imię</th>
-            <th>Nazwisko</th>
-            <th class="non-essential-row">Akceptacja</th>
-            <th>Akcje</th>
+            <th><%= __('reason.fields.name') %></th>
+            <th class="non-essential-row"><%= __('absence.fields.dateFrom') %></th>
+            <th><%= __('absence.fields.dateTo') %></th>
+            <th class="non-essential-row"><%= __('employee.fields.name') %></th>
+            <th><%= __('employee.fields.surname') %></th>
+            <th class="non-essential-row"><%= __('absence.fields.isAccepted') %></th>
+            <th><%= __('list.actions.title') %></th>
         </tr>
         </thead>
         <tbody>
         <% for (let absence of absences) { %>
-            <tr>
-                <td><%= absence.reason.Name %></td>
-                <td class="non-essential-row"><%= absence.DateFrom.toLocaleDateString('pl-PL') %></td>
-                <td><%= absence.DateTo.toLocaleDateString('pl-PL') %></td>
-                <td class="non-essential-row"><%= absence.employee.Name %></td>
-                <td><%= absence.employee.Surname %></td>
-                <td class="non-essential-row"><%= absence.IsAccepted === true ? 'Tak' : 'Nie' %></td>
-                <td>
-                    <ul class="list-actions">
-                        <li>
-                            <a href="/absence/details/<%= absence.IdAbsence %>" class="list-actions-button-details">Szczegóły</a>
-                            <a href="/absence/edit/<%= absence.IdAbsence %>" class="list-actions-button-edit">Edytuj</a>
-                            <a href="/absence/delete/<%= absence.IdAbsence %>"
-                               class="list-actions-button-delete">Usuń</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+            <% if(loggedUser.IsAdmin || loggedUser.IdEmployee === absence.IdEmployee){ %>
+                <tr>
+                    <td><%= absence.reason.Name %></td>
+                    <td class="non-essential-row"><%= absence.DateFrom.toLocaleDateString('pl-PL') %></td>
+                    <td><%= absence.DateTo.toLocaleDateString('pl-PL') %></td>
+                    <td class="non-essential-row"><%= absence.employee.Name %></td>
+                    <td><%= absence.employee.Surname %></td>
+                    <td class="non-essential-row"><%= absence.IsAccepted === true ? __('absence.acceptanceMap.yes') : __('absence.acceptanceMap.no') %></td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="/absence/details/<%= absence.IdAbsence %>"
+                                   class="list-actions-button-details"><%= __('list.actions.details') %></a>
+                                <a href="/absence/edit/<%= absence.IdAbsence %>"
+                                   class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
+                                <a href="/absence/delete/<%= absence.IdAbsence %>"
+                                   class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            <% } %>
         <% } %>
         </tbody>
     </table>
-    <p><a href="/absence/add" class="button-add">Dodaj nową nieobecność</a></p>
+
+    <p><a href="/absence/add" class="button-add"><%= __('absence.list.addNew') %></a></p>
 </main>
 
 <%- include('../../fragments/footer.ejs') %>

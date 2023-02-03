@@ -19,6 +19,12 @@ function validateForm(isDateValidated) {
     const errorIsAccepted = document.getElementById('errorIsAccepted');
     const errorSummary = document.getElementById('errorsSummary');
 
+    const formError = document.getElementById('errorMessage-default-form').innerText;
+    const reqError = document.getElementById('errorMessage-required_value').innerText;
+    const dateToBeforeDateFromError = document.getElementById('errorMessage-dateToBeforeDateFrom').innerText;
+    const dateFormatError = document.getElementById('errorMessage-dateFormat').innerText;
+    const dateFromPastError = document.getElementById('errorMessage-dateFromPast').innerText;
+
     resetErrors([reasonNameInput, dateFromInput, dateToInput, employeeInput, isAcceptedInput]
         , [errorReasonName, errorDateFrom, errorDateTo, errorEmployee, errorIsAccepted], errorSummary);
 
@@ -27,7 +33,7 @@ function validateForm(isDateValidated) {
     if (!checkRequired(reasonNameInput.value)) {
         valid = false;
         reasonNameInput.classList.add("error-input");
-        errorReasonName.innerText = "Pole jest wymagane";
+        errorReasonName.innerText = reqError;
     }
 
     let nowDate = new Date(),
@@ -47,46 +53,46 @@ function validateForm(isDateValidated) {
         if (!checkRequired(dateFromInput.value)) {
             valid = false;
             dateFromInput.classList.add("error-input");
-            errorDateFrom.innerText = "Pole jest wymagane";
+            errorDateFrom.innerText = reqError;
         } else if (!checkDate(dateFromInput.value)) {
             valid = false;
             dateFromInput.classList.add("error-input");
-            errorDateFrom.innerText = "Pole powinno zawierać datę w formacie yyyy-MM-dd";
+            errorDateFrom.innerText = dateFormatError;
         } else if (!checkDateIsAfter(dateFromInput.value, nowString)) {
             valid = false;
             dateFromInput.classList.add("error-input");
-            errorDateFrom.innerText = "Data nie może być z przeszłości";
+            errorDateFrom.innerText = dateFromPastError;
         }
     }
     if (!checkRequired(dateToInput.value)) {
         valid = false;
         dateToInput.classList.add("error-input");
-        errorDateTo.innerText = "Pole jest wymagane";
+        errorDateTo.innerText = reqError;
     } else if (!checkDate(dateToInput.value)) {
         valid = false;
         dateToInput.classList.add("error-input");
-        errorDateTo.innerText = "Pole powinno zawierać datę w formacie yyyy-MM-dd";
+        errorDateTo.innerText = dateFromPastError;
     } else if (!checkDateIsAfter(dateToInput.value, dateFromInput.value)) {
         valid = false;
         dateToInput.classList.add("error-input");
-        errorDateTo.innerText = "Data zakończenia nie może być przed datą rozpoczęcia";
+        errorDateTo.innerText = dateToBeforeDateFromError;
     }
 
 
     if (!checkRequired(employeeInput.value)) {
         valid = false;
         employeeInput.classList.add("error-input");
-        errorEmployee.innerText = "Pole jest wymagane";
+        errorEmployee.innerText = reqError;
     }
 
     if (!checkRequired(isAcceptedInput.value)) {
         valid = false;
         isAcceptedInput.classList.add("error-input");
-        errorIsAccepted.innerText = "Pole jest wymagane";
+        errorIsAccepted.innerText = reqError;
     }
 
     if (!valid) {
-        errorSummary.innerText = "Formularz zawiera błędy";
+        errorSummary.innerText = formError;
     }
 
     return valid;

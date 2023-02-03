@@ -15,11 +15,11 @@ const Reason = sequelize.define('Reason', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "notEmpty"
             },
             len: {
                 args: [2, 50],
-                msg: "Pole powinno zawierać od 2 do 50 znaków"
+                msg: "len_2_50"
             }
         }
     },
@@ -27,32 +27,23 @@ const Reason = sequelize.define('Reason', {
         type: Sequelize.DECIMAL(3, 2),
         allowNull: false,
         validate: {
-            //not null tutaj nie działa
-            // notNull: {
-            //     msg: "Pole jest wymagane"
-            // }
+            notEmpty: {
+                msg: "notEmpty"
+            },
             isDecimal: {
-                msg: "Pole jest wymagane"
+                msg: "notEmpty"
             },
             isGraterThanZero(value) {
                 if (value < 0) {
-                    throw new Error("Zakres od 0.00 do 1.00")
+                    throw new Error("between_0_1")
                 }
             },
             isLessThanOne(value) {
                 if (value > 1) {
-                    throw new Error("Zakres od 0.00 do 1.00")
+                    throw new Error("between_0_1")
                 }
             }
         }
     }
 });
-//TODO
-//by unique działał musi być sync -> dopytać się
-//const sequelize = new Sequelize("sqlite::memory:");
-// (async () => {
-//     await sequelize.sync({force: true});
-//     // Code here
-// })();
-
 module.exports = Reason;

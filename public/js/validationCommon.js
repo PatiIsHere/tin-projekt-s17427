@@ -54,19 +54,20 @@ function checkNumber(value) {
 }
 
 function checkNumberRange(value, min, max) {
-    if (!checkNumber(value)) {
+    if (!value) {
+        return false;
+    }
+    const num = parseFloat(value);
+    if (isNaN(num)) {
         return false;
     }
 
-    val = value.value;
+    if (num > max || num < min) {
+        return false;
+    }
 
-    if (val > max) {
-        return false;
-    }
-    if (val < min) {
-        return false;
-    }
     return true;
+
 }
 
 function checkDate(value) {
